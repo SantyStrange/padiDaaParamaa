@@ -1,0 +1,1040 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>RRB CBT - UNESCO CITES</title>
+<style>
+    :root {
+        --bg-color: #121212;
+        --surface-color: #1e1e1e;
+        --primary-cyan: #00e5ff;
+        --primary-blue: #2979ff;
+        --text-primary: #ffffff;
+        --text-secondary: #b3b3b3;
+        --border-color: #333333;
+        
+        --color-not-visited: #9e9e9e;
+        --color-not-answered: #f44336;
+        --color-answered: #4caf50;
+        --color-marked: #9c27b0;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    
+    /* 100dvh prevents mobile browser URL bars from hiding the bottom elements */
+    body { background-color: var(--bg-color); color: var(--text-primary); height: 100vh; height: 100dvh; overflow: hidden; display: flex; flex-direction: column; }
+    
+    /* Views */
+    .view { display: none; flex-direction: column; height: 100%; overflow: hidden; }
+    .view.active { display: flex; }
+    
+    /* Landing Page */
+    .landing-container { max-width: 800px; margin: auto; padding: 40px 20px; text-align: center; overflow-y: auto; }
+    .landing-container h1 { color: var(--primary-cyan); font-size: 2rem; margin-bottom: 20px; }
+    .instructions { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 10px; padding: 25px; text-align: left; margin-bottom: 30px; line-height: 1.6; }
+    .instructions h3 { color: var(--primary-cyan); margin-bottom: 15px; }
+    .instructions ul { margin-left: 20px; }
+    .start-btn { background: var(--primary-blue); color: #fff; border: none; padding: 15px 30px; font-size: 1.2rem; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.2s; text-transform: uppercase; }
+    .start-btn:hover { background: #1565c0; transform: scale(1.05); }
+
+    /* Header */
+    .header { background-color: var(--surface-color); border-bottom: 2px solid var(--primary-cyan); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; z-index: 50; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+    .header h1 { font-size: 1.2rem; font-weight: 600; color: var(--primary-cyan); }
+    .timer-container { font-size: 1.2rem; font-weight: bold; background: #2a2a2a; padding: 5px 15px; border-radius: 5px; border: 1px solid var(--primary-blue); }
+    
+    /* Mobile Top Bar (Toggle Palette & Submit) */
+    .mobile-top-bar { display: none; width: 100%; flex-shrink: 0; z-index: 40; border-bottom: 1px solid var(--border-color); }
+    .mobile-top-bar button { flex: 1; padding: 12px; border: none; font-weight: bold; font-size: 0.95rem; cursor: pointer; text-transform: uppercase; }
+    .btn-toggle-top { background: #2a2a2a; color: var(--primary-cyan); border-right: 1px solid var(--border-color) !important; }
+    .btn-submit-top { background: var(--color-answered); color: #fff; }
+
+    /* Main Layout */
+    .main-container { display: flex; flex: 1; overflow: hidden; position: relative; }
+    
+    /* Quiz Left Panel */
+    .quiz-left-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    
+    /* Question Scrolling Area */
+    .question-scroll-area { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 40px; }
+    .q-header { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: bold; font-size: 1.1rem; color: var(--primary-cyan); border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+    .question-text { font-size: 1.1rem; line-height: 1.6; margin-bottom: 15px; }
+    .question-tamil { font-size: 1.1rem; line-height: 1.6; color: var(--primary-cyan); margin-bottom: 25px; }
+    
+    .options-list { display: flex; flex-direction: column; gap: 12px; }
+    .option-label { display: flex; align-items: center; padding: 12px 15px; background: #2a2a2a; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; transition: 0.2s; }
+    .option-label:hover { border-color: var(--primary-cyan); background: #333; }
+    .option-label input { margin-right: 15px; transform: scale(1.2); accent-color: var(--primary-cyan); }
+    
+    /* Pinned Action Buttons Footer */
+    .action-buttons { flex-shrink: 0; display: flex; flex-wrap: wrap; gap: 10px; padding: 15px 20px; background: var(--surface-color); border-top: 1px solid var(--border-color); z-index: 10; box-shadow: 0 -4px 10px rgba(0,0,0,0.3); }
+    .btn { padding: 10px 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.2s; color: #fff; text-transform: uppercase; font-size: 0.85rem; display: flex; justify-content: center; align-items: center; text-align: center; }
+    .btn-prev { background: #424242; }
+    .btn-prev:hover { background: #616161; }
+    .btn-clear { background: #f44336; }
+    .btn-clear:hover { background: #d32f2f; }
+    .btn-mark { background: var(--color-marked); }
+    .btn-mark:hover { background: #7b1fa2; }
+    .btn-save { background: var(--primary-blue); margin-left: auto; }
+    .btn-save:hover { background: #1565c0; }
+
+    /* Palette Section */
+    .palette-section { width: 320px; background: var(--surface-color); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; transition: transform 0.3s ease; flex-shrink: 0; }
+    .palette-header { padding: 15px; border-bottom: 1px solid var(--border-color); font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+    .palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 15px; overflow-y: auto; }
+    .q-bubble { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 0.9rem; color: #fff; background: var(--color-not-visited); border: 2px solid transparent; }
+    .q-bubble.active { border-color: var(--primary-cyan); transform: scale(1.1); box-shadow: 0 0 8px var(--primary-cyan); }
+    
+    .status-0 { background: var(--color-not-visited); color: #000; } 
+    .status-1 { background: var(--color-not-answered); } 
+    .status-2 { background: var(--color-answered); } 
+    .status-3 { background: var(--color-marked); } 
+    .status-4 { background: var(--color-marked); position: relative; } 
+    .status-4::after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 8px; height: 8px; background: var(--color-answered); border-radius: 50%; border: 1px solid #fff; }
+
+    .legend { padding: 15px; font-size: 0.8rem; border-top: 1px solid var(--border-color); display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .legend-item { display: flex; align-items: center; gap: 5px; }
+    .legend-box { width: 15px; height: 15px; border-radius: 3px; }
+    .btn-submit-desktop { background: var(--color-answered); width: 100%; padding: 12px; }
+
+    /* Custom Modals (No native alerts) */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
+    .modal-content { background: var(--surface-color); padding: 30px; border-radius: 10px; width: 100%; max-width: 500px; border: 1px solid var(--border-color); text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+    .modal-content h2 { color: var(--primary-cyan); margin-bottom: 20px; }
+    .modal-actions { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
+    
+    /* Results View */
+    .results-container { max-width: 900px; margin: auto; padding: 40px 20px; text-align: center; overflow-y: auto; width: 100%; }
+    .result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 30px 0; }
+    .stat-box { background: #2a2a2a; padding: 20px; border-radius: 8px; border-bottom: 4px solid #666; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .stat-box.st-score { border-color: var(--primary-cyan); grid-column: span 2; }
+    .stat-box.st-correct { border-color: var(--color-answered); }
+    .stat-box.st-wrong { border-color: var(--color-not-answered); }
+    .stat-box h3 { font-size: 2.5rem; margin-bottom: 5px; }
+    .stat-box.st-score h3 { font-size: 3.5rem; color: var(--primary-cyan); }
+    
+    /* Tabbed Review Section */
+    #detailed-review-section { display: none; margin-top: 40px; }
+    .review-tabs { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap; }
+    .tab-btn { background: #2a2a2a; border: 1px solid var(--border-color); color: var(--text-secondary); padding: 12px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; flex: 1; min-width: 110px; text-align: center; transition: 0.2s; }
+    .tab-btn:hover { background: #333; }
+    .tab-btn.active { color: #fff; border-bottom: 3px solid; }
+    .tab-btn[data-tab="correct"].active { border-color: var(--color-answered); background: rgba(76, 175, 80, 0.1); }
+    .tab-btn[data-tab="wrong"].active { border-color: var(--color-not-answered); background: rgba(244, 67, 54, 0.1); }
+    .tab-btn[data-tab="unattempted"].active { border-color: var(--color-not-visited); background: rgba(158, 158, 158, 0.1); }
+    
+    .tab-content { display: none; text-align: left; }
+    .tab-content.active { display: block; }
+    
+    .review-item { padding: 20px; background: #2a2a2a; margin-bottom: 15px; border-radius: 8px; border-left: 5px solid var(--border-color); }
+    .review-item.correct { border-left-color: var(--color-answered); }
+    .review-item.wrong { border-left-color: var(--color-not-answered); }
+    .review-item.unattempted { border-left-color: var(--color-not-visited); }
+    
+    .answer-tag { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; margin-top: 10px; }
+    .tag-correct { background: rgba(76, 175, 80, 0.2); color: #81c784; border: 1px solid #4caf50; }
+    .tag-wrong { background: rgba(244, 67, 54, 0.2); color: #e57373; border: 1px solid #f44336; }
+    .tag-unattempted { background: rgba(158, 158, 158, 0.2); color: #e0e0e0; border: 1px solid #9e9e9e; }
+    
+    .explanation-box { margin-top: 12px; padding: 12px; background: #1e1e1e; border-radius: 5px; border-left: 3px solid var(--primary-cyan); font-size: 0.95rem; line-height: 1.5; color: #ddd; }
+
+    /* MOBILE SPECIFIC OVERRIDES */
+    @media (max-width: 768px) {
+        .mobile-top-bar { display: flex; }
+        .palette-section { position: absolute; top: 0; right: 0; height: 100%; transform: translateX(100%); z-index: 100; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
+        .palette-section.open { transform: translateX(0); }
+        
+        .result-grid { grid-template-columns: 1fr; }
+        .stat-box.st-score { grid-column: span 1; }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 10px;
+            padding-bottom: max(10px, env(safe-area-inset-bottom));
+        }
+        .btn-save { grid-column: span 2; margin-left: 0; padding: 15px; font-size: 1.1rem; order: 1; }
+        .btn-mark { order: 2; padding: 12px; }
+        .btn-clear { order: 3; padding: 12px; }
+        .btn-prev { grid-column: span 2; order: 4; padding: 12px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- VIEW 1: Landing Page -->
+<div id="view-landing" class="view active">
+    <div class="landing-container">
+        <h1>RRB CBT: UNESCO Sites</h1>
+        <div class="instructions">
+            <h3>📝 Instructions:</h3>
+            <ul>
+                <li><strong>Total Questions:</strong> 50 (Bilingual: English & Tamil).</li>
+                <li><strong>Time Allotted:</strong> 15 Minutes.</li>
+                <li><strong>Marking Scheme:</strong> +1 mark for correct answers, <strong>-0.33 marks</strong> for incorrect answers.</li>
+                <li>Questions are shuffled automatically for every attempt.</li>
+                <li>Use the Question Palette to navigate. You can Mark questions for review.</li>
+                <li>Ensure you have a stable connection. Do not refresh the page during the exam.</li>
+            </ul>
+        </div>
+        <button class="start-btn" onclick="startQuiz()">I am ready to begin</button>
+    </div>
+</div>
+
+<!-- VIEW 2: Main Quiz -->
+<div id="view-quiz" class="view">
+    
+    <div class="header">
+        <h1>UNESCO CITES INDIA</h1>
+        <div class="timer-container" id="timer">15:00</div>
+    </div>
+
+    <!-- Mobile Explicit Top Bar -->
+    <div class="mobile-top-bar">
+        <button class="btn-toggle-top" onclick="togglePalette()">☰ Question Palette</button>
+        <button class="btn-submit-top" onclick="showSubmitConfirm()">Submit Exam</button>
+    </div>
+
+    <div class="main-container">
+        
+        <!-- Question Panel (Scrollable content + Fixed Footer) -->
+        <div class="quiz-left-panel">
+            
+            <div class="question-scroll-area">
+                <div class="q-header">
+                    <span id="q-no">Question 1</span>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">Negative Marks: -0.33</span>
+                </div>
+                
+                <div class="question-text" id="q-text-en">Loading...</div>
+                <div class="question-tamil" id="q-text-ta">ஏற்றுகிறது...</div>
+                
+                <div class="options-list" id="options-container"></div>
+            </div>
+            
+            <!-- Fixed Action Buttons Footer -->
+            <div class="action-buttons">
+                <button class="btn btn-save" onclick="saveAndNext()">Save & Next ►</button>
+                <button class="btn btn-mark" onclick="markAndNext()">Mark & Next</button>
+                <button class="btn btn-clear" onclick="clearResponse()">Clear</button>
+                <button class="btn btn-prev" onclick="prevQuestion()">◄ Previous</button>
+            </div>
+            
+        </div>
+        
+        <!-- Collapsible Palette -->
+        <div class="palette-section" id="palette">
+            <div class="palette-header">
+                <span>Question Palette</span>
+                <button onclick="togglePalette()" class="btn btn-prev" style="padding: 5px; display: none;" id="close-palette-btn">X</button>
+            </div>
+            <div class="palette-grid" id="palette-grid"></div>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-box status-2"></div> Answered</div>
+                <div class="legend-item"><div class="legend-box status-1"></div> Not Answered</div>
+                <div class="legend-item"><div class="legend-box status-0"></div> Not Visited</div>
+                <div class="legend-item"><div class="legend-box status-3"></div> Marked</div>
+                <div class="legend-item"><div class="legend-box status-4"></div> Ans & Marked</div>
+            </div>
+            <div style="padding: 15px;">
+                <button class="btn btn-submit btn-submit-desktop" onclick="showSubmitConfirm()">SUBMIT EXAM</button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Custom Confirmation Modal -->
+<div class="modal-overlay" id="confirm-modal">
+    <div class="modal-content">
+        <h2>Submit Exam?</h2>
+        <p>Are you sure you want to submit? You will not be able to change your answers.</p>
+        <p id="unanswered-warning" style="color: var(--color-not-answered); margin-top: 10px; font-weight: bold; display: none;"></p>
+        <div class="modal-actions">
+            <button class="btn btn-prev" onclick="closeSubmitConfirm()">No, Go Back</button>
+            <button class="btn btn-submit" style="width: auto; margin-top: 0; padding: 10px 20px;" onclick="submitExam()">Yes, Submit</button>
+        </div>
+    </div>
+</div>
+
+<!-- VIEW 3: Results & Review -->
+<div id="view-results" class="view">
+    <div class="results-container">
+        <h1 style="color: var(--primary-cyan); font-size: 2.2rem; margin-bottom: 20px;">Exam Submitted Successfully</h1>
+        
+        <div class="result-grid">
+            <div class="stat-box st-score">
+                <div>Final Score</div>
+                <h3 id="res-score">0.00</h3>
+                <div style="color: var(--text-secondary); font-size: 0.9rem;">(Out of 50)</div>
+            </div>
+            <div class="stat-box st-correct">
+                <h3 id="res-correct">0</h3>
+                <div>Correct</div>
+            </div>
+            <div class="stat-box st-wrong">
+                <h3 id="res-wrong">0</h3>
+                <div>Incorrect</div>
+            </div>
+        </div>
+        
+        <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 25px;">Unattempted Questions: <strong id="res-unattempted" style="color: #fff;">0</strong></p>
+        
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;" id="post-exam-actions">
+            <button class="btn btn-save" onclick="showDetailedReview()">View Detailed Review</button>
+            <button class="btn btn-prev" onclick="location.reload()">Restart Quiz</button>
+        </div>
+        
+        <!-- 3-Section Tabbed Review -->
+        <div id="detailed-review-section">
+            <h2 style="margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Test Review</h2>
+            
+            <div class="review-tabs">
+                <button class="tab-btn" data-tab="correct" onclick="switchTab('correct')">Correct (<span id="tab-count-correct">0</span>)</button>
+                <button class="tab-btn" data-tab="wrong" onclick="switchTab('wrong')">Incorrect (<span id="tab-count-wrong">0</span>)</button>
+                <button class="tab-btn" data-tab="unattempted" onclick="switchTab('unattempted')">Unattempted (<span id="tab-count-unattempted">0</span>)</button>
+            </div>
+            
+            <div id="review-content-correct" class="tab-content"></div>
+            <div id="review-content-wrong" class="tab-content"></div>
+            <div id="review-content-unattempted" class="tab-content"></div>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+// Base Data containing 50 questions
+const baseQuizData = [
+    // ================= 18 CENTRAL GOVT SCHEMES 2026 MCQS (Q1 - Q18) =================
+    // 1
+    {
+        qE: "Which Union Ministry is the nodal agency for the 'Bharat-VISTAAR' AI-based agricultural advisory initiative?",
+        qT: "'பாரத்-விஸ்தார்' செயற்கை நுண்ணறிவு சார்ந்த வேளாண் ஆலோசனைத் திட்டத்தின் ஒருங்கிணைப்பு அமைச்சகம் எது?",
+        oE: ["Ministry of Electronics and IT", "Ministry of Agriculture and Farmers Welfare", "Ministry of Rural Development", "Ministry of Science and Technology"],
+        oT: ["மின்னணு மற்றும் தகவல் தொழில்நுட்ப அமைச்சகம்", "வேளாண்மை மற்றும் விவசாயிகள் நல அமைச்சகம்", "ஊரக வளர்ச்சி அமைச்சகம்", "அறிவியல் மற்றும் தொழில்நுட்ப அமைச்சகம்"],
+        a: 1,
+        exp: "Bharat-VISTAAR is implemented by the Ministry of Agriculture and Farmers Welfare to provide AI-enabled advisory on crops, weather, pests, and farming practices."
+    },
+    // 2
+    {
+        qE: "What is the target floating solar capacity under the Pradhan Mantri Surya Sarovar Yojana approved in July 2026?",
+        qT: "ஜூலை 2026-இல் அங்கீகரிக்கப்பட்ட பிரதம மந்திரி சூர்ய சரோவர் யோஜனாவின் கீழ் இலக்கு வைக்கப்பட்ட மிதக்கும் சூரிய மின்சக்தித் திறன் எவ்வளவு?",
+        oE: ["1,500 MW", "3,000 MW", "5,000 MW", "10,000 MW"],
+        oT: ["1,500 மெகாவாட்", "3,000 மெகாவாட்", "5,000 மெகாவாட்", "10,000 மெகாவாட்"],
+        a: 2,
+        exp: "PM-SSY (outlay ₹5,070 crore, MNRE, FY 2026-27 to 2030-31) targets installing 5,000 MW of floating solar plants on water bodies, lakes, and dams."
+    },
+    // 3
+    {
+        qE: "The 'Samudra Manthan' National Offshore Exploration Scheme with an outlay of ₹84,084 crore is implemented by which ministry?",
+        qT: "₹84,084 கோடி ஒதுக்கீட்டில் செயல்படுத்தப்படும் 'சமுத்திர மந்தன்' தேசிய கடல்சார் அகழ்வாய்வுத் திட்டம் எந்த அமைச்சகத்தால் செயல்படுத்தப்படுகிறது?",
+        oE: ["Ministry of Petroleum and Natural Gas", "Ministry of Ports, Shipping and Waterways", "Ministry of Mines", "Ministry of Earth Sciences"],
+        oT: ["பெட்ரோலியம் மற்றும் இயற்கை எரிவாயு அமைச்சகம்", "துறைமுகங்கள், கப்பல் போக்குவரத்து மற்றும் நீர்வழிகள் அமைச்சகம்", "சுரங்கத் துறை அமைச்சகம்", "புவி அறிவியல் அமைச்சகம்"],
+        a: 0,
+        exp: "Samudra Manthan is implemented by the Ministry of Petroleum and Natural Gas to discover new undersea oil and natural gas reserves."
+    },
+    // 4
+    {
+        qE: "How many days of statutory wage-based employment per financial year are guaranteed under the new 'Viksit Bharat - G-RAM G' Act?",
+        qT: "புதிய 'விக்சித் பாரத் - ஜி-ராம் ஜி' சட்டத்தின் கீழ் ஒரு நிதியாண்டிற்கு எத்தனை நாட்கள் சட்டப்பூர்வ ஊதிய வேலைவாய்ப்பு உத்தரவாதம் அளிக்கப்படுகிறது?",
+        oE: ["90 days", "100 days", "150 days", "125 days"],
+        oT: ["90 நாட்கள்", "100 நாட்கள்", "150 நாட்கள்", "125 நாட்கள்"],
+        a: 3,
+        exp: "Launched at Mukkavaripalli, Andhra Pradesh, the VB-G RAM G Act replaces MGNREGA, guaranteeing 125 days of wage employment and raising the national average wage to ₹327.4/day."
+    },
+    // 5
+    {
+        qE: "What is the 5-year budgetary outlay approved for the Mobile Phone Manufacturing Scheme (MPMS) under MeitY?",
+        qT: "MeitY-இன் கீழ் உள்ள மொபைல் போன் உற்பத்தித் திட்டத்திற்கு அங்கீகரிக்கப்பட்ட 5 ஆண்டு நிதி ஒதுக்கீடு எவ்வளவு?",
+        oE: ["₹33,660 crore", "₹50,500 crore", "₹62,500 crore", "₹75,000 crore"],
+        oT: ["₹33,660 கோடி", "₹50,500 கோடி", "₹62,500 கோடி", "₹75,000 கோடி"],
+        a: 2,
+        exp: "MPMS has an outlay of ₹62,500 crore (FY 2026-27 to 2030-31) and replaces the PLI Scheme for Large Scale Electronics Manufacturing."
+    },
+    // 6
+    {
+        qE: "Which group of four states has been proposed for developing 'Rare Earth Corridors' under the Ministry of Mines?",
+        qT: "சுரங்கத் துறை அமைச்சகத்தின் கீழ் 'அரிய மண் கனிம வழித்தடங்கள்' அமைக்க எந்த நான்கு மாநிலங்கள் முன்மொழியப்பட்டுள்ளன?",
+        oE: ["Odisha, Kerala, Andhra Pradesh and Tamil Nadu", "Odisha, Gujarat, Maharashtra and Karnataka", "Kerala, Karnataka, Telangana and Tamil Nadu", "Odisha, Jharkhand, Chhattisgarh and Bihar"],
+        oT: ["ஒடிசா, கேரளா, ஆந்திரப் பிரதேசம் மற்றும் தமிழ்நாடு", "ஒடிசா, குஜராத், மகாராஷ்டிரா மற்றும் கர்நாடகா", "கேரளா, கர்நாடகா, தெலுங்கானா மற்றும் தமிழ்நாடு", "ஒடிசா, ஜார்க்கண்ட், சத்தீஸ்கர் மற்றும் பீகார்"],
+        a: 0,
+        exp: "Rare Earth Corridors were proposed for Odisha, Kerala, Andhra Pradesh, and Tamil Nadu to strengthen India's critical-mineral supply chain."
+    },
+    // 7
+    {
+        qE: "What is the name of the AI-powered chatbot introduced on the Supreme Court website to provide automated court-related assistance?",
+        qT: "நீதிமன்றம் தொடர்பான தானியங்கி உதவிகளை வழங்க உச்ச நீதிமன்ற இணையதளத்தில் அறிமுகப்படுத்தப்பட்ட AI சாட்பாட்டின் பெயர் என்ன?",
+        oE: ["Nyaya Setu", "e-Court AI", "Justice Bot", "Su Sahay"],
+        oT: ["நியாய சேது", "இ-கோர்ட் AI", "ஜஸ்டிஸ் பாட்", "சு சஹாய்"],
+        a: 3,
+        exp: "Su Sahay is the AI-powered chatbot integrated with the Supreme Court website (while Nyaya Setu is part of DISHA 2.0 under the Department of Justice)."
+    },
+    // 8
+    {
+        qE: "Which scheme was approved by National CAMPA in July 2026 for the conservation of 15,000 sacred groves across India?",
+        qT: "நாடு முழுவதும் உள்ள 15,000 புனிதத் தோப்புகளைப் பாதுகாக்க ஜூலை 2026-இல் தேசிய CAMPA அங்கீகரித்த திட்டம் எது?",
+        oE: ["Dev Van Vikas Yojana", "Aastha Van Sanrakshan Yojana", "Pavan Upvan Samvardhan Yojana", "National Environmental Heritage Scheme"],
+        oT: ["தேவ் வன் விகாஸ் யோஜனா", "ஆஸ்தா வன் சன்ரக்ஷன் யோஜனா", "பவன் உபவன் சம்வர்தன் யோஜனா", "தேசிய சுற்றுச்சூழல் பாரம்பரியத் திட்டம்"],
+        a: 1,
+        exp: "Aastha Van Sanrakshan Yojana has a ₹3,000 crore budget (2026-27 to 2030-31) to protect and restore 15,000 sacred groves."
+    },
+    // 9
+    {
+        qE: "The Coastal Cargo Promotion Scheme aims to increase the share of inland waterways and coastal shipping to what percentage by 2047?",
+        qT: "கடலோர சரக்கு ஊக்குவிப்புத் திட்டம் 2047-க்குள் உள்நாட்டு நீர்வழிகள் மற்றும் கடலோர கப்பல் போக்குவரத்தின் பங்கை எத்தனை சதவீதமாக உயர்த்த இலக்கு வைத்துள்ளது?",
+        oE: ["12%", "8%", "10%", "15%"],
+        oT: ["12%", "8%", "10%", "15%"],
+        a: 0,
+        exp: "Under the Ministry of Ports, Shipping & Waterways, the Coastal Cargo Promotion Scheme targets a 12% freight share by 2047."
+    },
+    // 10
+    {
+        qE: "What is the primary objective of the 'PARIVARTAN Scheme' with an outlay of ₹9,585 crore?",
+        qT: "₹9,585 கோடி ஒதுக்கீட்டில் செயல்படுத்தப்படும் 'பரிவர்தன் திட்டத்தின்' முதன்மை நோக்கம் என்ன?",
+        oE: ["Replacing old railway coaches", "Replacing old agricultural tractors", "Replacing old fishing vessels", "Replacing old trucks and buses in Delhi-NCR"],
+        oT: ["பழைய ரயில் பெட்டிகளை மாற்றுதல்", "பழைய வேளாண் டிராக்டர்களை மாற்றுதல்", "பழைய மீன்பிடிப் படகுகளை மாற்றுதல்", "டெல்லி-NCR பகுதியில் உள்ள பழைய லாரிகள் மற்றும் பேருந்துகளை மாற்றுதல்"],
+        a: 3,
+        exp: "PARIVARTAN accelerates the replacement of old polluting trucks and buses in Delhi-NCR with cleaner BS-VI and EV vehicles."
+    },
+    // 11
+    {
+        qE: "In which northeastern state was the ₹236 crore 'Mission Queen Pineapple' project launched in May 2026?",
+        qT: "மே 2026-இல் ₹236 கோடி மதிப்பிலான 'மிஷன் குயின் அன்னாசி' திட்டம் எந்த வடகிழக்கு மாநிலத்தில் தொடங்கப்பட்டது?",
+        oE: ["Assam", "Tripura", "Meghalaya", "Manipur"],
+        oT: ["அசாம்", "திரிபுரா", "மேகாலயா", "மணிப்பூர்"],
+        a: 1,
+        exp: "Union Minister Jyotiraditya M. Scindia and Tripura CM Dr. Manik Saha launched Mission Queen Pineapple in Tripura for its GI-tagged fruit."
+    },
+    // 12
+    {
+        qE: "Which traditional product from Assam is being promoted as a global luxury brand under 'Mission Senehjori'?",
+        qT: "'மிஷன் சினேஜோரி' திட்டத்தின் கீழ் அசாமின் எந்த பாரம்பரியப் பொருள் உலகளாவிய ஆடம்பர பிராண்டாக ஊக்குவிக்கப்படுகிறது?",
+        oE: ["Eri Silk", "Pashmina Wool", "Muga Silk", "Patola Silk"],
+        oT: ["எரி பட்டு", "பஷ்மினா கம்பளி", "முகா பட்டு", "படோலா பட்டு"],
+        a: 2,
+        exp: "Mission Senehjori promotes Assam's GI-tagged Muga Silk, the world's only naturally golden-coloured silk."
+    },
+    // 13
+    {
+        qE: "The 'SEHAT' initiative (Science Excellence for Health through Agricultural Transformation) is a joint effort of which two organisations?",
+        qT: "'சேஹத்' முன்முயற்சி எந்த இரு அமைப்புகளின் கூட்டு முயற்சியாகும்?",
+        oE: ["ICAR and NITI Aayog", "ICMR and DRDO", "NITI Aayog and ICMR", "ICMR and ICAR"],
+        oT: ["ஐ.சி.ஏ.ஆர் மற்றும் நிதி ஆயோக்", "ஐ.சி.எம்.ஆர் மற்றும் டிஆர்டிஓ", "நிதி ஆயோக் மற்றும் ஐ.சி.எம்.ஆர்", "ஐ.சி.எம்.ஆர் மற்றும் ஐ.சி.ஏ.ஆர்"],
+        a: 3,
+        exp: "Launched by Union Health Minister J. P. Nadda, SEHAT is a joint initiative of ICMR and ICAR to improve public health via nutrition and agriculture."
+    },
+    // 14
+    {
+        qE: "What is the primary purpose of the 'PM RAHAT Scheme' launched in February 2026?",
+        qT: "பிப்ரவரி 2026-இல் தொடங்கப்பட்ட 'பிரதம மந்திரி ராஹத் திட்டத்தின்' முதன்மை நோக்கம் என்ன?",
+        oE: ["Crop insurance for marginal farmers", "Cashless treatment for road accident victims", "Housing for disaster victims", "Health insurance for senior citizens"],
+        oT: ["குறு விவசாயிகளுக்கான பயிர் காப்பீடு", "சாலை விபத்தில் பாதிக்கப்பட்டவர்களுக்கு கட்டணமில்லா சிகிச்சை", "பேரிடர் பாதிக்கப்பட்டோருக்கான வீட்டுவசதி", "மூத்த குடிமக்களுக்கான மருத்துவக் காப்பீடு"],
+        a: 1,
+        exp: "PM RAHAT provides cashless medical treatment of up to ₹1.5 lakh for road accident victims."
+    },
+    // 15
+    {
+        qE: "Till which year has the Jal Jeevan Mission (JJM 2.0) been extended to provide 'Har Ghar Jal' status to all Gram Panchayats?",
+        qT: "அனைத்து கிராம பஞ்சாயத்துகளுக்கும் 'ஹர் கர் ஜல்' அந்தஸ்து வழங்க ஜல் ஜீவன் இயக்கம் 2.0 எந்த ஆண்டு வரை நீட்டிக்கப்பட்டுள்ளது?",
+        oE: ["2026", "2027", "2028", "2030"],
+        oT: ["2026", "2027", "2028", "2030"],
+        a: 2,
+        exp: "Jal Jeevan Mission (JJM 2.0) under the Ministry of Jal Shakti has been extended till 2028."
+    },
+    // 16
+    {
+        qE: "What is the financial incentive provided to first-time private-sector employees under the Pradhan Mantri Viksit Bharat Rozgar Yojana?",
+        qT: "பிரதம மந்திரி விக்சித் பாரத் ரோஜ்கர் யோஜனாவின் கீழ் தனியார் துறையில் முதன்முறையாகப் பணியில் சேரும் ஊழியர்களுக்கு வழங்கப்படும் ஊக்கத்தொகை எவ்வளவு?",
+        oE: ["₹15,000", "₹10,000", "₹20,000", "₹25,000"],
+        oT: ["₹15,000", "₹10,000", "₹20,000", "₹25,000"],
+        a: 0,
+        exp: "With a ₹1 lakh crore outlay under the Ministry of Labour & Employment, PM Viksit Bharat Rozgar Yojana targets 3.5 crore jobs and gives ₹15,000 to first-time private-sector employees."
+    },
+    // 17
+    {
+        qE: "By what other name is the Ministry of Textiles' 'Mission for Cotton Productivity' known?",
+        qT: "ஜவுளித் துறை அமைச்சகத்தின் 'பருத்தி உற்பத்தித்திறன் இயக்கம்' வேறு எவ்வாறு அழைக்கப்படுகிறது?",
+        oE: ["KAPAS SHAKTI", "KAPAS KANTI", "COTTON MITRA", "KAPAS VIKAS"],
+        oT: ["கபாஸ் சக்தி", "கபாஸ் காந்தி", "காட்டன் மித்ரா", "கபாஸ் விகாஸ்"],
+        a: 1,
+        exp: "The Mission for Cotton Productivity (outlay ₹5,659.22 crore) is also known as KAPAS KANTI."
+    },
+    // 18
+    {
+        qE: "Which agency implements the 'Small Hydro Power Development Scheme' under the Ministry of New and Renewable Energy?",
+        qT: "புதிய மற்றும் புதுப்பிக்கத்தக்க எரிசக்தி அமைச்சகத்தின் கீழ் 'சிறு நீர்மின்சார மேம்பாட்டுத் திட்டத்தை' செயல்படுத்தும் நிறுவனம் எது?",
+        oE: ["NTPC Limited", "NHPC Limited", "Solar Energy Corporation of India", "Power Grid Corporation"],
+        oT: ["என்.டி.பி.சி லிமிடெட்", "என்.எச்.பி.சி லிமிடெட்", "இந்திய சூரிய ஆற்றல் கழகம்", "பவர் கிரிட் கார்ப்பரேஷன்"],
+        a: 2,
+        exp: "The Small Hydro Power Development Scheme (outlay ₹2,584.60 crore, target 1,500 MW) is implemented by the Solar Energy Corporation of India (SECI)."
+    },
+
+    // ================= 12 SOURCES OF INDIAN CONSTITUTION MCQS (Q19 - Q30) =================
+    // 19
+    {
+        qE: "From which source has the Indian Constitution borrowed the Federal System, Office of Governor, and Public Service Commission?",
+        qT: "கூட்டாட்சி அமைப்பு, ஆளுநர் பதவி மற்றும் பொதுப் பணியாளர் தேர்வாணையம் ஆகியவை இந்திய அரசியலமைப்பில் எந்த மூலத்திலிருந்து எடுக்கப்பட்டன?",
+        oE: ["Government of India Act 1935", "Constitution of Canada", "Constitution of the UK", "Constitution of the USA"],
+        oT: ["இந்திய அரசுச் சட்டம் 1935", "கனடா அரசியலமைப்பு", "இங்கிலாந்து அரசியலமைப்பு", "அமெரிக்க அரசியலமைப்பு"],
+        a: 0,
+        exp: "The Federal System, Office of Governor, and Public Service Commission were borrowed from the Government of India Act, 1935."
+    },
+    // 20
+    {
+        qE: "The Concurrent List and the provision for a Joint-sitting of the two Houses of Parliament were borrowed from which country?",
+        qT: "பொதுப் பட்டியல் மற்றும் நாடாளுமன்றத்தின் இரு அவைகளின் கூட்டுக் கூட்டம் ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
+        oE: ["Canada", "United Kingdom", "Ireland", "Australia"],
+        oT: ["கனடா", "இங்கிலாந்து", "அயர்லாந்து", "ஆஸ்திரேலியா"],
+        a: 3,
+        exp: "Australia is the source of the Concurrent List, freedom of trade/commerce/intercourse, language of the Preamble, and joint-sitting of Parliament."
+    },
+    // 21
+    {
+        qE: "Vesting of residuary powers in the Centre and the advisory jurisdiction of the Supreme Court were borrowed from which country?",
+        qT: "எஞ்சிய அதிகாரங்களை மத்திய அரசிடம் வழங்குதல் மற்றும் உச்ச நீதிமன்றத்தின் ஆலோசனை அதிகார வரம்பு ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
+        oE: ["United States", "Australia", "Canada", "Germany"],
+        oT: ["அமெரிக்கா", "ஆஸ்திரேலியா", "கனடா", "ஜெர்மனி"],
+        a: 2,
+        exp: "Canada is the source of a federation with a strong Centre, residuary powers in the Centre, appointment of state governors by the Centre, and advisory jurisdiction of the Supreme Court."
+    },
+    // 22
+    {
+        qE: "The Directive Principles of State Policy (DPSP) and the nomination of members to the Rajya Sabha were borrowed from which country?",
+        qT: "அரசு நெறிமுறைக் கோட்பாடுகள் மற்றும் மாநிலங்களவைக்கு உறுப்பினர்களை நியமிக்கும் முறை ஆகியவை எந்த நாட்டிலிருந்து எடுக்கப்பட்டன?",
+        oE: ["Ireland", "South Africa", "United Kingdom", "France"],
+        oT: ["அயர்லாந்து", "தென்னாப்பிரிக்கா", "இங்கிலாந்து", "பிரான்ஸ்"],
+        a: 0,
+        exp: "Ireland is the source of DPSP, nomination of members to the Rajya Sabha, and the method of election of the President."
+    },
+    // 23
+    {
+        qE: "From which country did the Indian Constitution borrow the concept of 'Procedure Established by Law'?",
+        qT: "'சட்டத்தால் நிறுவப்பட்ட நடைமுறை' என்ற கருத்து இந்திய அரசியலமைப்பில் எந்த நாட்டிலிருந்து பெறப்பட்டது?",
+        oE: ["United Kingdom", "United States", "Germany", "Japan"],
+        oT: ["இங்கிலாந்து", "அமெரிக்கா", "ஜெர்மனி", "ஜப்பான்"],
+        a: 3,
+        exp: "'Procedure Established by Law' was borrowed from Japan."
+    },
+    // 24
+    {
+        qE: "Fundamental Duties and the ideals of social, economic, and political justice in the Preamble were borrowed from which country?",
+        qT: "அடிப்படைக் கடமைகள் மற்றும் முகவுரையில் உள்ள சமூக, பொருளாதார மற்றும் அரசியல் நீதி ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
+        oE: ["France", "USSR", "Ireland", "Canada"],
+        oT: ["பிரான்ஸ்", "சோவியத் யூனியன்", "அயர்லாந்து", "கனடா"],
+        a: 1,
+        exp: "Fundamental Duties and the ideals of social, economic, and political justice in the Preamble were borrowed from the USSR (Russia)."
+    },
+    // 25
+    {
+        qE: "Single Citizenship, Rule of Law, Bicameralism, and Prerogative Writs were borrowed from which country?",
+        qT: "ஒற்றைக் குடியுரிமை, சட்டத்தின் ஆட்சி, ஈரவை சட்டமன்றம் மற்றும் நீதிப்பேராணைகள் ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
+        oE: ["United Kingdom", "United States", "Canada", "Australia"],
+        oT: ["இங்கிலாந்து", "அமெரிக்கா", "கனடா", "ஆஸ்திரேலியா"],
+        a: 0,
+        exp: "The UK is the source of Parliamentary government, Rule of Law, Single Citizenship, Cabinet system, Bicameralism, and Writs."
+    },
+    // 26
+    {
+        qE: "Judicial Review, the post of Vice-President, and the impeachment of the President were borrowed from which country?",
+        qT: "நீதித்துறை மறுஆய்வு, துணைக் குடியரசுத் தலைவர் பதவி மற்றும் குடியரசுத் தலைவரைப் பதவி நீக்கம் செய்யும் முறை ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
+        oE: ["United Kingdom", "Canada", "Ireland", "United States"],
+        oT: ["இங்கிலாந்து", "கனடா", "அயர்லாந்து", "அமெரிக்கா"],
+        a: 3,
+        exp: "The US Constitution is the source of Fundamental Rights, Independent Judiciary, Judicial Review, Impeachment of President, removal of SC/HC judges, and the post of Vice-President."
+    },
+    // 27
+    {
+        qE: "The provision for the suspension of Fundamental Rights during an emergency was borrowed from which country?",
+        qT: "அவசரநிலையின் போது அடிப்படை உரிமைகளை நிறுத்தி வைக்கும் விதி எந்த நாட்டிலிருந்து பெறப்பட்டது?",
+        oE: ["USSR", "Germany", "South Africa", "Japan"],
+        oT: ["சோவியத் யூனியன்", "ஜெர்மனி", "தென்னாப்பிரிக்கா", "ஜப்பான்"],
+        a: 1,
+        exp: "The suspension of Fundamental Rights during an emergency was borrowed from the Weimar Constitution of Germany."
+    },
+    // 28
+    {
+        qE: "The procedure for amending the Constitution and the election of members of the Rajya Sabha were borrowed from which country?",
+        qT: "அரசியலமைப்புத் திருத்த நடைமுறை மற்றும் மாநிலங்களவை உறுப்பினர்களின் தேர்தல் முறை ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
+        oE: ["Ireland", "Australia", "South Africa", "France"],
+        oT: ["அயர்லாந்து", "ஆஸ்திரேலியா", "தென்னாப்பிரிக்கா", "பிரான்ஸ்"],
+        a: 2,
+        exp: "South Africa is the source of the constitutional amendment procedure and the election of members of the Rajya Sabha."
+    },
+    // 29
+    {
+        qE: "The ideals of 'Republic' and 'Liberty, Equality, and Fraternity' in the Preamble were borrowed from which country?",
+        qT: "முகவுரையில் உள்ள 'குடியரசு' மற்றும் 'சுதந்திரம், சமத்துவம், சகோதரத்துவம்' ஆகிய கொள்கைகள் எந்த நாட்டிலிருந்து பெறப்பட்டன?",
+        oE: ["USSR", "United States", "Ireland", "France"],
+        oT: ["சோவியத் யூனியன்", "அமெரிக்கா", "அயர்லாந்து", "பிரான்ஸ்"],
+        a: 3,
+        exp: "France is the source of the Republic system and the ideals of Liberty, Equality, and Fraternity in the Preamble."
+    },
+    // 30
+    {
+        qE: "The appointment of state governors by the Centre was borrowed from which country's constitution?",
+        qT: "மத்திய அரசால் மாநில ஆளுநர்கள் நியமிக்கப்படும் முறை எந்த நாட்டின் அரசியலமைப்பிலிருந்து பெறப்பட்டது?",
+        oE: ["Australia", "Canada", "United Kingdom", "Ireland"],
+        oT: ["ஆஸ்திரேலியா", "கனடா", "இங்கிலாந்து", "அயர்லாந்து"],
+        a: 1,
+        exp: "While the Office of Governor comes from the GOI Act 1935, the appointment of state governors by the Centre was borrowed from Canada."
+    },
+
+    // ================= 15 AMENDMENTS OF INDIAN CONSTITUTION MCQS (Q31 - Q45) =================
+    // 31
+    {
+        qE: "Which Constitutional Amendment Act added the Ninth Schedule to the Indian Constitution in 1951?",
+        qT: "1951-ஆம் ஆண்டு இந்திய அரசியலமைப்பில் ஒன்பதாவது அட்டவணையைச் சேர்த்த அரசியலமைப்புத் திருத்தச் சட்டம் எது?",
+        oE: ["7th Amendment Act", "21st Amendment Act", "First Amendment Act", "42nd Amendment Act"],
+        oT: ["7வது திருத்தச் சட்டம்", "21வது திருத்தச் சட்டம்", "முதல் திருத்தச் சட்டம்", "42வது திருத்தச் சட்டம்"],
+        a: 2,
+        exp: "The First Amendment Act, 1951 added the Ninth Schedule to the Indian Constitution."
+    },
+    // 32
+    {
+        qE: "Which Amendment Act introduced the concept of a joint High Court for two or more states and proposed the establishment of Union Territories?",
+        qT: "இரண்டு அல்லது அதற்கு மேற்பட்ட மாநிலங்களுக்குப் பொதுவான உயர் நீதிமன்றம் மற்றும் யூனியன் பிரதேசங்களை உருவாக்குவதை முன்மொழிந்த திருத்தச் சட்டம் எது?",
+        oE: ["7th Amendment Act, 1956", "First Amendment Act, 1951", "31st Amendment Act, 1972", "36th Amendment Act, 1975"],
+        oT: ["7வது திருத்தச் சட்டம், 1956", "முதல் திருத்தச் சட்டம், 1951", "31வது திருத்தச் சட்டம், 1972", "36வது திருத்தச் சட்டம், 1975"],
+        a: 0,
+        exp: "The 7th Amendment Act, 1956 introduced a joint High Court for two or more states and proposed Union Territories."
+    },
+    // 33
+    {
+        qE: "Which Constitutional Amendment Act elevated Sikkim to the status of a full-fledged state of India in 1975?",
+        qT: "1975-ஆம் ஆண்டு சிக்கிமை இந்தியாவின் முழுமையான மாநிலமாக உயர்த்திய அரசியலமைப்புத் திருத்தச் சட்டம் எது?",
+        oE: ["35th Amendment Act", "36th Amendment Act", "31st Amendment Act", "42nd Amendment Act"],
+        oT: ["35வது திருத்தச் சட்டம்", "36வது திருத்தச் சட்டம்", "31வது திருத்தச் சட்டம்", "42வது திருத்தச் சட்டம்"],
+        a: 1,
+        exp: "While the 35th Amendment Act (1974) made Sikkim an Associate State, the 36th Amendment Act (1975) made it a full-fledged state."
+    },
+    // 34
+    {
+        qE: "Which three words were added to the Preamble by the 42nd Constitutional Amendment Act, 1976?",
+        qT: "1976-ஆம் ஆண்டின் 42வது அரசியலமைப்புத் திருத்தச் சட்டத்தால் முகவுரையில் சேர்க்கப்பட்ட மூன்று சொற்கள் எவை?",
+        oE: ["Liberty, Equality, Fraternity", "Sovereign, Democratic, Republic", "Socialist, Secular, Integrity", "Justice, Liberty, Integrity"],
+        oT: ["சுதந்திரம், சமத்துவம், சகோதரத்துவம்", "இறையாண்மை, மக்களாட்சி, குடியரசு", "சோசலிசம், மதச்சார்பின்மை, ஒருமைப்பாடு", "நீதி, சுதந்திரம், ஒருமைப்பாடு"],
+        a: 2,
+        exp: "The 42nd Amendment Act, 1976 (Mini Constitution) added the words Socialist, Secular, and Integrity to the Preamble."
+    },
+    // 35
+    {
+        qE: "On the recommendations of which committee were 10 Fundamental Duties added under Article 51A by the 42nd Amendment Act?",
+        qT: "42வது திருத்தச் சட்டத்தின் மூலம் பிரிவு 51A-இன் கீழ் 10 அடிப்படைக் கடமைகள் எந்தக் குழுவின் பரிந்துரையின் பேரில் சேர்க்கப்பட்டன?",
+        oE: ["Swaran Singh Committee", "Sarkaria Commission", "Balwant Rai Mehta Committee", "Verma Committee"],
+        oT: ["சுவரன் சிங் குழு", "சர்க்காரியா ஆணையம்", "பல்வந்த் ராய் மேத்தா குழு", "வர்மா குழு"],
+        a: 0,
+        exp: "10 Fundamental Duties were added under Article 51A based on the recommendations of the Swaran Singh Committee."
+    },
+    // 36
+    {
+        qE: "Which Amendment Act deleted the Right to Property from Fundamental Rights (Article 31) and made it a legal right under Article 300A?",
+        qT: "சொத்துரிமையை அடிப்படை உரிமைகளிலிருந்து நீக்கி, பிரிவு 300A-இன் கீழ் சட்ட உரிமையாக மாற்றிய திருத்தச் சட்டம் எது?",
+        oE: ["42nd Amendment Act, 1976", "52nd Amendment Act, 1985", "61st Amendment Act, 1989", "44th Amendment Act, 1978"],
+        oT: ["42வது திருத்தச் சட்டம், 1976", "52வது திருத்தச் சட்டம், 1985", "61வது திருத்தச் சட்டம், 1989", "44வது திருத்தச் சட்டம், 1978"],
+        a: 3,
+        exp: "The 44th Amendment Act, 1978 deleted the Right to Property from Fundamental Rights and placed it as a legal right under Article 300A."
+    },
+    // 37
+    {
+        qE: "Which Constitutional Amendment Act added the 10th Schedule containing anti-defection legislation in 1985?",
+        qT: "1985-ஆம் ஆண்டு கட்சித் தாவல் தடைச் சட்டத்தைக் கொண்ட 10வது அட்டவணையைச் சேர்த்த அரசியலமைப்புத் திருத்தச் சட்டம் எது?",
+        oE: ["44th Amendment Act", "61st Amendment Act", "52nd Amendment Act", "65th Amendment Act"],
+        oT: ["44வது திருத்தச் சட்டம்", "61வது திருத்தச் சட்டம்", "52வது திருத்தச் சட்டம்", "65வது திருத்தச் சட்டம்"],
+        a: 2,
+        exp: "The 52nd Amendment Act, 1985 added the 10th Schedule to include anti-defection legislation."
+    },
+    // 38
+    {
+        qE: "Which Amendment Act reduced the voting age in India from 21 years to 18 years in 1989?",
+        qT: "1989-ஆம் ஆண்டு இந்தியாவில் வாக்களிக்கும் வயதை 21-லிருந்து 18 ஆகக் குறைத்த திருத்தச் சட்டம் எது?",
+        oE: ["61st Amendment Act", "52nd Amendment Act", "69th Amendment Act", "73rd Amendment Act"],
+        oT: ["61வது திருத்தச் சட்டம்", "52வது திருத்தச் சட்டம்", "69வது திருத்தச் சட்டம்", "73வது திருத்தச் சட்டம்"],
+        a: 0,
+        exp: "The 61st Amendment Act, 1989 lowered the voting age from 21 to 18."
+    },
+    // 39
+    {
+        qE: "Which Constitutional Amendment Act designated the Union Territory of Delhi as the 'National Capital Territory of Delhi'?",
+        qT: "டெல்லி யூனியன் பிரதேசத்தை 'டெல்லி தேசியத் தலைநகர் பகுதி' என அறிவித்த அரசியலமைப்புத் திருத்தச் சட்டம் எது?",
+        oE: ["61st Amendment Act, 1989", "65th Amendment Act, 1990", "73rd Amendment Act, 1992", "69th Amendment Act, 1991"],
+        oT: ["61வது திருத்தச் சட்டம், 1989", "65வது திருத்தச் சட்டம், 1990", "73வது திருத்தச் சட்டம், 1992", "69வது திருத்தச் சட்டம், 1991"],
+        a: 3,
+        exp: "The 69th Amendment Act, 1991 designated the Union Territory of Delhi as the National Capital Territory of Delhi."
+    },
+    // 40
+    {
+        qE: "Which three languages were added to the 8th Schedule by the 71st Amendment Act, 1992?",
+        qT: "1992-ஆம் ஆண்டின் 71வது திருத்தச் சட்டத்தால் 8வது அட்டவணையில் சேர்க்கப்பட்ட மூன்று மொழிகள் எவை?",
+        oE: ["Bodo, Dogri, and Santali", "Konkani, Manipuri, and Nepali", "Sindhi, Konkani, and Maithili", "Manipuri, Dogri, and Nepali"],
+        oT: ["போடோ, டோக்ரி மற்றும் சந்தாலி", "கொங்கனி, மணிப்பூரி மற்றும் நேபாளி", "சிந்தி, கொங்கனி மற்றும் மைதிலி", "மணிப்பூரி, டோக்ரி மற்றும் நேபாளி"],
+        a: 1,
+        exp: "The 71st Amendment Act, 1992 added Konkani, Manipuri, and Nepali, bringing the total to 18 languages (later 92nd Amendment added Bodo, Dogri, Maithili, and Santali)."
+    },
+    // 41
+    {
+        qE: "Which Amendment Act added Article 21-A providing free and compulsory education to all children aged 6 to 14 years?",
+        qT: "6 முதல் 14 வயது வரையிலான அனைத்துக் குழந்தைகளுக்கும் இலவச மற்றும் கட்டாயக் கல்வியை வழங்கும் பிரிவு 21-A-ஐச் சேர்த்த திருத்தச் சட்டம் எது?",
+        oE: ["86th Amendment Act, 2002", "73rd Amendment Act, 1992", "91st Amendment Act, 2003", "97th Amendment Act, 2012"],
+        oT: ["86வது திருத்தச் சட்டம், 2002", "73வது திருத்தச் சட்டம், 1992", "91வது திருத்தச் சட்டம், 2003", "97வது திருத்தச் சட்டம், 2012"],
+        a: 0,
+        exp: "The 86th Amendment Act, 2002 inserted Article 21-A and added a new fundamental duty under Article 51-A for parents/guardians."
+    },
+    // 42
+    {
+        qE: "According to the 91st Amendment Act, 2003, the Council of Ministers shall not exceed what percentage of the total strength of the Lok Sabha?",
+        qT: "2003-ஆம் ஆண்டின் 91வது திருத்தச் சட்டத்தின்படி, அமைச்சரவை மக்களவையின் மொத்த உறுப்பினர் எண்ணிக்கையில் எத்தனை சதவீதத்திற்கு மிகாமல் இருக்க வேண்டும்?",
+        oE: ["10%", "12%", "20%", "15%"],
+        oT: ["10%", "12%", "20%", "15%"],
+        a: 3,
+        exp: "The 91st Amendment Act, 2003 capped the size of the Council of Ministers at 15% of the total strength of the Lok Sabha."
+    },
+    // 43
+    {
+        qE: "Which Constitutional Amendment Act granted constitutional status to the National Commission for Backward Classes in 2018?",
+        qT: "2018-ஆம் ஆண்டு தேசிய பிற்படுத்தப்பட்டோர் ஆணையத்திற்கு அரசியலமைப்பு அந்தஸ்து வழங்கிய திருத்தச் சட்டம் எது?",
+        oE: ["101st Amendment Act", "102nd Amendment Act", "103rd Amendment Act", "105th Amendment Act"],
+        oT: ["101வது திருத்தச் சட்டம்", "102வது திருத்தச் சட்டம்", "103வது திருத்தச் சட்டம்", "105வது திருத்தச் சட்டம்"],
+        a: 1,
+        exp: "The 102nd Amendment Act, 2018 granted constitutional status to the National Commission for Backward Classes."
+    },
+    // 44
+    {
+        qE: "Which Amendment Act removed the reserved seats for the Anglo-Indian community in the Lok Sabha and state assemblies?",
+        qT: "மக்களவை மற்றும் மாநில சட்டமன்றங்களில் ஆங்கிலோ-இந்திய சமூகத்திற்கான இடஒதுக்கீட்டை நீக்கிய திருத்தச் சட்டம் எது?",
+        oE: ["102nd Amendment Act, 2018", "103rd Amendment Act, 2019", "104th Amendment Act, 2020", "105th Amendment Act, 2021"],
+        oT: ["102வது திருத்தச் சட்டம், 2018", "103வது திருத்தச் சட்டம், 2019", "104வது திருத்தச் சட்டம், 2020", "105வது திருத்தச் சட்டம், 2021"],
+        a: 2,
+        exp: "The 104th Amendment Act, 2020 extended SC/ST seat reservation for 10 years and removed reserved seats for the Anglo-Indian community."
+    },
+    // 45
+    {
+        qE: "What is the key provision of the 106th Constitutional Amendment Act, 2023?",
+        qT: "2023-ஆம் ஆண்டின் 106வது அரசியலமைப்புத் திருத்தச் சட்டத்தின் முக்கிய அம்சம் என்ன?",
+        oE: ["10% reservation for EWS citizens", "Reserves one-third of seats for women in Lok Sabha and State Legislative Assemblies", "Implementation of Goods and Services Tax", "Constitutional status to co-operative societies"],
+        oT: ["பொருளாதாரத்தில் பின்தங்கியோருக்கு 10% இடஒதுக்கீடு", "மக்களவை மற்றும் மாநில சட்டமன்றங்களில் பெண்களுக்கு மூன்றில் ஒரு பங்கு இடஒதுக்கீடு", "சரக்கு மற்றும் சேவை வரி அமலாக்கம்", "கூட்டுறவு சங்கங்களுக்கு அரசியலமைப்பு அந்தஸ்து"],
+        a: 1,
+        exp: "The 106th Amendment Act, 2023 reserves 1/3rd of seats for women in the Lok Sabha, State Legislative Assemblies, and the Legislative Assembly of NCT Delhi."
+    },
+
+    // ================= 5 STATEMENT-BASED QUESTIONS (Q46 - Q50) =================
+    // 46 (Schemes - Ans: 2 - Both 1 and 2)
+    {
+        qE: "Consider the following statements:\n1. The 'BHAVYA' (Bharat Audyogik Vikas Yojana) aims to develop 100 plug-and-play Industrial Parks across India.\n2. The 'BHAVYA-Rasayan Scheme' proposes the establishment of 3 dedicated Chemical Parks.",
+        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. 'பவ்யா' (பாரத் உத்யோகிக் விகாஸ் யோஜனா) இந்தியா முழுவதும் 100 உடனடிப் பயன்பாட்டுத் தொழில் பூங்காக்களை உருவாக்குவதை நோக்கமாகக் கொண்டுள்ளது.\n2. 'பவ்யா-ரசாயன் திட்டம்' 3 பிரத்யேக இரசாயனப் பூங்காக்களை அமைக்க முன்மொழிகிறது.",
+        oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+        oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
+        a: 2,
+        exp: "Both statements are correct. BHAVYA (₹33,660 Cr) develops 100 industrial parks under DPIIT/NICDC, while BHAVYA-Rasayan (₹3,030 Cr) sets up 3 chemical parks under the Ministry of Chemicals & Fertilizers."
+    },
+    // 47 (Schemes - Ans: 3 - Neither 1 nor 2)
+    {
+        qE: "Consider the following statements:\n1. The 'Prime Minister's Research Chairs (PMRC)' scheme was launched by the Ministry of Science and Technology.\n2. The 'Samarth 2.0' scheme is primarily related to semiconductor manufacturing.",
+        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. 'பிரதம மந்திரி ஆராய்ச்சி இருக்கைகள்' திட்டம் அறிவியல் மற்றும் தொழில்நுட்ப அமைச்சகத்தால் தொடங்கப்பட்டது.\n2. 'சமர்த் 2.0' திட்டம் முதன்மையாக செமிகண்டக்டர் உற்பத்தியுடன் தொடர்புடையது.",
+        oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+        oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
+        a: 3,
+        exp: "Both statements are incorrect. PMRC was launched by the Ministry of Education, and Samarth 2.0 is related to textile skilling under the Ministry of Textiles."
+    },
+    // 48 (Sources - Ans: 0 - Only 1)
+    {
+        qE: "Consider the following statements:\n1. The nomination of members to the Rajya Sabha was borrowed from Ireland.\n2. The election of members of the Rajya Sabha was borrowed from the United Kingdom.",
+        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. மாநிலங்களவைக்கு உறுப்பினர்களை நியமிக்கும் முறை அயர்லாந்திலிருந்து பெறப்பட்டது.\n2. மாநிலங்களவை உறுப்பினர்களின் தேர்தல் முறை இங்கிலாந்திலிருந்து பெறப்பட்டது.",
+        oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+        oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
+        a: 0,
+        exp: "Statement 1 is correct. Statement 2 is incorrect because the election of members of the Rajya Sabha was borrowed from South Africa."
+    },
+    // 49 (Amendments - Ans: 1 - Only 2)
+    {
+        qE: "Consider the following statements:\n1. The 42nd Amendment Act replaced the term 'internal disturbance' with 'armed rebellion' for national emergency.\n2. The 44th Amendment Act provided that Fundamental Rights guaranteed by Articles 20 and 21 cannot be suspended during a national emergency.",
+        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. 42வது திருத்தச் சட்டம் தேசிய அவசரநிலைக்கான 'உள்நாட்டுக் கலவரம்' என்ற சொல்லை 'ஆயுதக் கிளர்ச்சி' என மாற்றியது.\n2. 44வது திருத்தச் சட்டம் தேசிய அவசரநிலையின் போது பிரிவுகள் 20 மற்றும் 21 வழங்கும் அடிப்படை உரிமைகளை நிறுத்தி வைக்க முடியாது என உறுதி செய்தது.",
+        oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+        oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
+        a: 1,
+        exp: "Statement 1 is incorrect because replacing 'internal disturbance' with 'armed rebellion' was done by the 44th Amendment Act, 1978, not the 42nd. Statement 2 is correct."
+    },
+    // 50 (Amendments - Ans: 0 - Only 1)
+    {
+        qE: "Consider the following statements:\n1. The 42nd Amendment Act transferred five subjects including Education and Forests from the State List to the Concurrent List.\n2. The 99th Amendment Act, 2014 established the Goods and Services Tax (GST).",
+        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. 42வது திருத்தச் சட்டம் கல்வி மற்றும் வனங்கள் உள்ளிட்ட ஐந்து துறைகளை மாநிலப் பட்டியலிலிருந்து பொதுப் பட்டியலுக்கு மாற்றியது.\n2. 2014-ஆம் ஆண்டின் 99வது திருத்தச் சட்டம் சரக்கு மற்றும் சேவை வரியை (GST) அறிமுகப்படுத்தியது.",
+        oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+        oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
+        a: 0,
+        exp: "Statement 1 is correct. Statement 2 is incorrect because the 99th Amendment Act formed the NJAC (later struck down by the SC in 2015), while the 101st Amendment Act, 2016 implemented GST."
+    }
+];
+let quizData = [];
+let currentQ = 0;
+let answers = [];
+let status = []; // 0: Not Visited, 1: Not Answered, 2: Answered, 3: Marked, 4: Answered & Marked
+
+// Shuffle array algorithm
+function shuffleArray(array) {
+    let shuffled = array.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+// Switch Views
+function switchView(viewId) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(viewId).classList.add('active');
+}
+
+function startQuiz() {
+    quizData = shuffleArray(baseQuizData);
+    answers = new Array(50).fill(null);
+    status = new Array(50).fill(0);
+    
+    switchView('view-quiz');
+    
+    buildPalette();
+    loadQuestion(0);
+    startTimer();
+    
+    if(window.innerWidth <= 768) {
+        document.getElementById('close-palette-btn').style.display = 'block';
+    }
+}
+
+function buildPalette() {
+    const grid = document.getElementById('palette-grid');
+    grid.innerHTML = '';
+    for(let i=0; i<50; i++) {
+        let bubble = document.createElement('div');
+        bubble.className = 'q-bubble status-' + status[i];
+        bubble.innerText = (i+1);
+        bubble.id = 'pb-' + i;
+        bubble.onclick = () => jumpToQuestion(i);
+        grid.appendChild(bubble);
+    }
+}
+
+function syncAnswer() {
+    let selected = document.querySelector('input[name="opt"]:checked');
+    if(selected) {
+        answers[currentQ] = parseInt(selected.value);
+    } else {
+        answers[currentQ] = null;
+    }
+}
+
+function updatePaletteCSS() {
+    for(let i=0; i<50; i++) {
+        let bubble = document.getElementById('pb-' + i);
+        bubble.className = 'q-bubble status-' + status[i];
+        if(i === currentQ) bubble.classList.add('active');
+    }
+}
+
+function loadQuestion(index) {
+    if(status[currentQ] === 0) {
+        status[currentQ] = (answers[currentQ] !== null) ? 2 : 1;
+    }
+    
+    currentQ = index;
+    if(status[currentQ] === 0) status[currentQ] = 1;
+
+    document.getElementById('q-no').innerText = "Question " + (currentQ + 1);
+    
+    // Format statement questions with line breaks
+    let qTextEn = quizData[currentQ].qE.replace(/\n/g, "<br>");
+    let qTextTa = quizData[currentQ].qT.replace(/\n/g, "<br>");
+    
+    document.getElementById('q-text-en').innerHTML = qTextEn;
+    document.getElementById('q-text-ta').innerHTML = qTextTa;
+
+    let optHtml = '';
+    for(let i=0; i<4; i++) {
+        let checked = (answers[currentQ] === i) ? 'checked' : '';
+        optHtml += `
+            <label class="option-label">
+                <input type="radio" name="opt" value="${i}" ${checked} onchange="syncAnswer()">
+                <div>
+                    <div>${quizData[currentQ].oE[i]}</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 4px;">${quizData[currentQ].oT[i]}</div>
+                </div>
+            </label>
+        `;
+    }
+    document.getElementById('options-container').innerHTML = optHtml;
+    
+    // Clear scroll position to top of container when moving to a new question
+    document.querySelector('.question-scroll-area').scrollTop = 0;
+    
+    updatePaletteCSS();
+}
+
+function jumpToQuestion(i) {
+    syncAnswer();
+    loadQuestion(i);
+    if(window.innerWidth <= 768) togglePalette();
+}
+
+function saveAndNext() {
+    syncAnswer();
+    status[currentQ] = (answers[currentQ] !== null) ? 2 : 1;
+    if(currentQ < 49) loadQuestion(currentQ + 1);
+    else updatePaletteCSS();
+}
+
+function markAndNext() {
+    syncAnswer();
+    status[currentQ] = (answers[currentQ] !== null) ? 4 : 3;
+    if(currentQ < 49) loadQuestion(currentQ + 1);
+    else updatePaletteCSS();
+}
+
+function clearResponse() {
+    answers[currentQ] = null;
+    status[currentQ] = 1;
+    loadQuestion(currentQ);
+}
+
+function prevQuestion() {
+    syncAnswer();
+    if(currentQ > 0) loadQuestion(currentQ - 1);
+}
+
+function togglePalette() {
+    document.getElementById('palette').classList.toggle('open');
+}
+
+// Timer Logic
+let timeLimit = 15 * 60; // 15 mins
+let timerInterval;
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        timeLimit--;
+        let m = Math.floor(timeLimit / 60).toString().padStart(2, '0');
+        let s = (timeLimit % 60).toString().padStart(2, '0');
+        document.getElementById('timer').innerText = m + ':' + s;
+        if(timeLimit <= 0) {
+            clearInterval(timerInterval);
+            submitExam();
+        }
+    }, 1000);
+}
+
+// Custom Submit Modals
+function showSubmitConfirm() {
+    syncAnswer();
+    let unattempted = answers.filter(a => a === null).length;
+    let warningTxt = document.getElementById('unanswered-warning');
+    if(unattempted > 0) {
+        warningTxt.innerText = `You have ${unattempted} unattempted questions!`;
+        warningTxt.style.display = 'block';
+    } else {
+        warningTxt.style.display = 'none';
+    }
+    document.getElementById('confirm-modal').style.display = 'flex';
+}
+
+function closeSubmitConfirm() {
+    document.getElementById('confirm-modal').style.display = 'none';
+}
+
+function submitExam() {
+    clearInterval(timerInterval);
+    document.getElementById('confirm-modal').style.display = 'none';
+    syncAnswer();
+    
+    let correct = 0, wrong = 0, unattempted = 0;
+    
+    quizData.forEach((q, i) => {
+        if(answers[i] === null) unattempted++;
+        else if(answers[i] === q.a) correct++;
+        else wrong++;
+    });
+    
+    let score = correct - (wrong * 0.3333);
+    
+    document.getElementById('res-score').innerText = score.toFixed(2);
+    document.getElementById('res-correct').innerText = correct;
+    document.getElementById('res-wrong').innerText = wrong;
+    document.getElementById('res-unattempted').innerText = unattempted;
+    
+    switchView('view-results');
+}
+
+// Detailed Review with Tabs
+function showDetailedReview() {
+    let htmlCorrect = '';
+    let htmlWrong = '';
+    let htmlUnattempted = '';
+    
+    quizData.forEach((q, i) => {
+        let isAttempted = answers[i] !== null;
+        let isCorrect = isAttempted && answers[i] === q.a;
+        let cssClass = !isAttempted ? 'unattempted' : (isCorrect ? 'correct' : 'wrong');
+        
+        let chosenText = isAttempted ? q.oE[answers[i]] : "None";
+        let correctText = q.oE[q.a];
+        
+        let qText = q.qE.replace(/\n/g, "<br>");
+        let tagHtml = !isAttempted ? `<span class="answer-tag tag-unattempted">Unattempted</span>` : 
+                      isCorrect ? `<span class="answer-tag tag-correct">Correct (+1.0)</span>` : 
+                      `<span class="answer-tag tag-wrong">Incorrect (-0.33)</span>`;
+                      
+        let explanationText = q.exp || `The correct answer is ${correctText}.`;
+        
+        let itemHtml = `
+            <div class="review-item ${cssClass}">
+                <strong style="font-size: 1.1rem; color: #fff;">Q${i+1}: ${qText}</strong><br>
+                ${tagHtml}
+                <div style="margin-top: 15px; font-size: 0.95rem; display: grid; gap: 8px;">
+                    <div><span style="color: var(--text-secondary)">Your Answer:</span> <span style="color: ${!isAttempted ? '#9e9e9e' : isCorrect ? 'var(--color-answered)' : 'var(--color-not-answered)'}">${chosenText}</span></div>
+                    <div><span style="color: var(--text-secondary)">Correct Answer:</span> <span style="color: var(--color-answered); font-weight: bold;">${correctText}</span></div>
+                </div>
+                <div class="explanation-box">
+                    <strong style="color: var(--primary-cyan);">Explanation:</strong><br>
+                    ${explanationText}
+                </div>
+            </div>
+        `;
+        
+        if (!isAttempted) htmlUnattempted += itemHtml;
+        else if (isCorrect) htmlCorrect += itemHtml;
+        else htmlWrong += itemHtml;
+    });
+    
+    // Inject Content
+    document.getElementById('review-content-correct').innerHTML = htmlCorrect || "<div style='text-align:center; padding: 30px; color: var(--text-secondary);'>No correct answers recorded in this session.</div>";
+    document.getElementById('review-content-wrong').innerHTML = htmlWrong || "<div style='text-align:center; padding: 30px; color: var(--color-answered); font-weight: bold;'>Amazing job! You had no incorrect answers!</div>";
+    document.getElementById('review-content-unattempted').innerHTML = htmlUnattempted || "<div style='text-align:center; padding: 30px; color: var(--text-secondary);'>You attempted every single question. Great effort!</div>";
+    
+    // Setup Tab counts
+    document.getElementById('tab-count-correct').innerText = document.getElementById('res-correct').innerText;
+    document.getElementById('tab-count-wrong').innerText = document.getElementById('res-wrong').innerText;
+    document.getElementById('tab-count-unattempted').innerText = document.getElementById('res-unattempted').innerText;
+    
+    // Display Section
+    document.getElementById('post-exam-actions').style.display = 'none';
+    document.getElementById('detailed-review-section').style.display = 'block';
+    
+    // Default to the first tab that has data
+    if (htmlWrong) switchTab('wrong');
+    else if (htmlCorrect) switchTab('correct');
+    else switchTab('unattempted');
+}
+
+function switchTab(tabId) {
+    // Reset buttons and content visibility
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    
+    // Activate chosen tab
+    document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
+    document.getElementById(`review-content-${tabId}`).classList.add('active');
+}
+</script>
+</body>
+</html>
+
+```
