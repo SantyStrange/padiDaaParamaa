@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>RRB CBT - Polity + Schemes</title>
+<title>RRB CBT COMPUTER INTRO</title>
 <style>
     :root {
         --bg-color: #121212;
@@ -166,7 +166,7 @@
 <!-- VIEW 1: Landing Page -->
 <div id="view-landing" class="view active">
     <div class="landing-container">
-        <h1>RRB CBT: Latest Schemes , Polity</h1>
+        <h1>RRB CBT: CS INTRO</h1>
         <div class="instructions">
             <h3>📝 Instructions:</h3>
             <ul>
@@ -186,7 +186,7 @@
 <div id="view-quiz" class="view">
     
     <div class="header">
-        <h1>UNESCO CITES INDIA</h1>
+        <h1>COMPUTER INTRODUCTION</h1>
         <div class="timer-container" id="timer">15:00</div>
     </div>
 
@@ -305,464 +305,459 @@
 </div>
 
 <script>
-// Base Data containing 50 questions
 const baseQuizData = [
-    // ================= 18 CENTRAL GOVT SCHEMES 2026 MCQS (Q1 - Q18) =================
-    // 1
+    // ================= 45 STANDARD MCQS (Q1 - Q45) =================
+    // 1 (a: 0)
     {
-        qE: "Which Union Ministry is the nodal agency for the 'Bharat-VISTAAR' AI-based agricultural advisory initiative?",
-        qT: "'பாரத்-விஸ்தார்' செயற்கை நுண்ணறிவு சார்ந்த வேளாண் ஆலோசனைத் திட்டத்தின் ஒருங்கிணைப்பு அமைச்சகம் எது?",
-        oE: ["Ministry of Electronics and IT", "Ministry of Agriculture and Farmers Welfare", "Ministry of Rural Development", "Ministry of Science and Technology"],
-        oT: ["மின்னணு மற்றும் தகவல் தொழில்நுட்ப அமைச்சகம்", "வேளாண்மை மற்றும் விவசாயிகள் நல அமைச்சகம்", "ஊரக வளர்ச்சி அமைச்சகம்", "அறிவியல் மற்றும் தொழில்நுட்ப அமைச்சகம்"],
-        a: 1,
-        exp: "Bharat-VISTAAR is implemented by the Ministry of Agriculture and Farmers Welfare to provide AI-enabled advisory on crops, weather, pests, and farming practices."
-    },
-    // 2
-    {
-        qE: "What is the target floating solar capacity under the Pradhan Mantri Surya Sarovar Yojana approved in July 2026?",
-        qT: "ஜூலை 2026-இல் அங்கீகரிக்கப்பட்ட பிரதம மந்திரி சூர்ய சரோவர் யோஜனாவின் கீழ் இலக்கு வைக்கப்பட்ட மிதக்கும் சூரிய மின்சக்தித் திறன் எவ்வளவு?",
-        oE: ["1,500 MW", "3,000 MW", "5,000 MW", "10,000 MW"],
-        oT: ["1,500 மெகாவாட்", "3,000 மெகாவாட்", "5,000 மெகாவாட்", "10,000 மெகாவாட்"],
-        a: 2,
-        exp: "PM-SSY (outlay ₹5,070 crore, MNRE, FY 2026-27 to 2030-31) targets installing 5,000 MW of floating solar plants on water bodies, lakes, and dams."
-    },
-    // 3
-    {
-        qE: "The 'Samudra Manthan' National Offshore Exploration Scheme with an outlay of ₹84,084 crore is implemented by which ministry?",
-        qT: "₹84,084 கோடி ஒதுக்கீட்டில் செயல்படுத்தப்படும் 'சமுத்திர மந்தன்' தேசிய கடல்சார் அகழ்வாய்வுத் திட்டம் எந்த அமைச்சகத்தால் செயல்படுத்தப்படுகிறது?",
-        oE: ["Ministry of Petroleum and Natural Gas", "Ministry of Ports, Shipping and Waterways", "Ministry of Mines", "Ministry of Earth Sciences"],
-        oT: ["பெட்ரோலியம் மற்றும் இயற்கை எரிவாயு அமைச்சகம்", "துறைமுகங்கள், கப்பல் போக்குவரத்து மற்றும் நீர்வழிகள் அமைச்சகம்", "சுரங்கத் துறை அமைச்சகம்", "புவி அறிவியல் அமைச்சகம்"],
+        qE: "In which year was the world's first commercial microprocessor, the Intel 4004, launched?",
+        qT: "உலகின் முதல் வணிக நுண்செயலியான இன்டெல் 4004 எந்த ஆண்டு அறிமுகப்படுத்தப்பட்டது?",
+        oE: ["1971", "1960", "1985", "1945"],
+        oT: ["1971", "1960", "1985", "1945"],
         a: 0,
-        exp: "Samudra Manthan is implemented by the Ministry of Petroleum and Natural Gas to discover new undersea oil and natural gas reserves."
+        exp: "The Intel 4004, a 4-bit processor integrating a complete CPU onto a single silicon chip, was officially released on November 15, 1971."
     },
-    // 4
+    // 2 (a: 1)
     {
-        qE: "How many days of statutory wage-based employment per financial year are guaranteed under the new 'Viksit Bharat - G-RAM G' Act?",
-        qT: "புதிய 'விக்சித் பாரத் - ஜி-ராம் ஜி' சட்டத்தின் கீழ் ஒரு நிதியாண்டிற்கு எத்தனை நாட்கள் சட்டப்பூர்வ ஊதிய வேலைவாய்ப்பு உத்தரவாதம் அளிக்கப்படுகிறது?",
-        oE: ["90 days", "100 days", "150 days", "125 days"],
-        oT: ["90 நாட்கள்", "100 நாட்கள்", "150 நாட்கள்", "125 நாட்கள்"],
-        a: 3,
-        exp: "Launched at Mukkavaripalli, Andhra Pradesh, the VB-G RAM G Act replaces MGNREGA, guaranteeing 125 days of wage employment and raising the national average wage to ₹327.4/day."
+        qE: "Which indigenous microprocessor, launched in 2025, marked a milestone as India's first 1.0 GHz, 64-bit dual-core processor?",
+        qT: "2025-இல் அறிமுகப்படுத்தப்பட்டு, இந்தியாவின் முதல் 1.0 ஜிகாஹெர்ட்ஸ், 64-பிட் இரட்டைக் கோர் செயலியாக மைல்கல் படைத்த உள்நாட்டு நுண்செயலி எது?",
+        oE: ["VEGA-64", "DHRUV64", "BHARAT-Core 64", "SHAKTI-X64"],
+        oT: ["வேகா-64", "துருவ்64", "பாரத்-கோர் 64", "சக்தி-எக்ஸ்64"],
+        a: 1,
+        exp: "The DHRUV64 microprocessor is India's first indigenous 1.0 GHz, 64-bit dual-core processor designed for servers and high-end computing."
     },
-    // 5
+    // 3 (a: 2)
     {
-        qE: "What is the 5-year budgetary outlay approved for the Mobile Phone Manufacturing Scheme (MPMS) under MeitY?",
-        qT: "MeitY-இன் கீழ் உள்ள மொபைல் போன் உற்பத்தித் திட்டத்திற்கு அங்கீகரிக்கப்பட்ட 5 ஆண்டு நிதி ஒதுக்கீடு எவ்வளவு?",
-        oE: ["₹33,660 crore", "₹50,500 crore", "₹62,500 crore", "₹75,000 crore"],
-        oT: ["₹33,660 கோடி", "₹50,500 கோடி", "₹62,500 கோடி", "₹75,000 கோடி"],
+        qE: "Which institution developed 'SHAKTI', India's first indigenous RISC-V microprocessor?",
+        qT: "இந்தியாவின் முதல் உள்நாட்டு RISC-V நுண்செயலியான 'சக்தி' செயலியை உருவாக்கிய நிறுவனம் எது?",
+        oE: ["C-DAC", "IISc Bengaluru", "IIT Madras", "DRDO"],
+        oT: ["சி-டாக்", "ஐஐஎஸ்சி பெங்களூரு", "ஐஐடி மெட்ராஸ்", "டிஆர்டிஓ"],
         a: 2,
-        exp: "MPMS has an outlay of ₹62,500 crore (FY 2026-27 to 2030-31) and replaces the PLI Scheme for Large Scale Electronics Manufacturing."
+        exp: "SHAKTI was developed by IIT Madras, while the VEGA series of processors was developed by C-DAC."
     },
-    // 6
+    // 4 (a: 3)
     {
-        qE: "Which group of four states has been proposed for developing 'Rare Earth Corridors' under the Ministry of Mines?",
-        qT: "சுரங்கத் துறை அமைச்சகத்தின் கீழ் 'அரிய மண் கனிம வழித்தடங்கள்' அமைக்க எந்த நான்கு மாநிலங்கள் முன்மொழியப்பட்டுள்ளன?",
-        oE: ["Odisha, Kerala, Andhra Pradesh and Tamil Nadu", "Odisha, Gujarat, Maharashtra and Karnataka", "Kerala, Karnataka, Telangana and Tamil Nadu", "Odisha, Jharkhand, Chhattisgarh and Bihar"],
-        oT: ["ஒடிசா, கேரளா, ஆந்திரப் பிரதேசம் மற்றும் தமிழ்நாடு", "ஒடிசா, குஜராத், மகாராஷ்டிரா மற்றும் கர்நாடகா", "கேரளா, கர்நாடகா, தெலுங்கானா மற்றும் தமிழ்நாடு", "ஒடிசா, ஜார்க்கண்ட், சத்தீஸ்கர் மற்றும் பீகார்"],
-        a: 0,
-        exp: "Rare Earth Corridors were proposed for Odisha, Kerala, Andhra Pradesh, and Tamil Nadu to strengthen India's critical-mineral supply chain."
-    },
-    // 7
-    {
-        qE: "What is the name of the AI-powered chatbot introduced on the Supreme Court website to provide automated court-related assistance?",
-        qT: "நீதிமன்றம் தொடர்பான தானியங்கி உதவிகளை வழங்க உச்ச நீதிமன்ற இணையதளத்தில் அறிமுகப்படுத்தப்பட்ட AI சாட்பாட்டின் பெயர் என்ன?",
-        oE: ["Nyaya Setu", "e-Court AI", "Justice Bot", "Su Sahay"],
-        oT: ["நியாய சேது", "இ-கோர்ட் AI", "ஜஸ்டிஸ் பாட்", "சு சஹாய்"],
+        qE: "Which scenario highlights the 'GIGO' (Garbage In, Garbage Out) limitation of a computer that cannot be overcome by its diligence?",
+        qT: "கணினியின் விடாமுயற்சியால் சமாளிக்க முடியாத 'கார்பேஜ் இன், கார்பேஜ் அவுட்' வரம்பை எந்தச் சூழ்நிலை எடுத்துக்காட்டுகிறது?",
+        oE: ["Booking flights in the morning and writing code in the afternoon", "Performing trillions of calculations per second", "Processing data for 72 hours straight without losing attention", "Generating incorrect output because the initial data entered was flawed"],
+        oT: ["காலையில் விமான டிக்கெட் முன்பதிவு செய்து மாலையில் நிரலாக்கம் செய்வது", "வினாடிக்கு டிரில்லியன் கணக்கான கணக்கீடுகளைச் செய்வது", "கவனம் சிதறாமல் 72 மணி நேரம் தொடர்ந்து தரவைச் செயலாக்குவது", "தவறான தரவு உள்ளிடப்பட்டதால் தவறான வெளியீட்டை உருவாக்குவது"],
         a: 3,
-        exp: "Su Sahay is the AI-powered chatbot integrated with the Supreme Court website (while Nyaya Setu is part of DISHA 2.0 under the Department of Justice)."
+        exp: "Because computers have 'No IQ', even with high diligence they faithfully process flawed input to produce flawed output (GIGO)."
     },
-    // 8
+    // 5 (a: 0)
     {
-        qE: "Which scheme was approved by National CAMPA in July 2026 for the conservation of 15,000 sacred groves across India?",
-        qT: "நாடு முழுவதும் உள்ள 15,000 புனிதத் தோப்புகளைப் பாதுகாக்க ஜூலை 2026-இல் தேசிய CAMPA அங்கீகரித்த திட்டம் எது?",
-        oE: ["Dev Van Vikas Yojana", "Aastha Van Sanrakshan Yojana", "Pavan Upvan Samvardhan Yojana", "National Environmental Heritage Scheme"],
-        oT: ["தேவ் வன் விகாஸ் யோஜனா", "ஆஸ்தா வன் சன்ரக்ஷன் யோஜனா", "பவன் உபவன் சம்வர்தன் யோஜனா", "தேசிய சுற்றுச்சூழல் பாரம்பரியத் திட்டம்"],
-        a: 1,
-        exp: "Aastha Van Sanrakshan Yojana has a ₹3,000 crore budget (2026-27 to 2030-31) to protect and restore 15,000 sacred groves."
-    },
-    // 9
-    {
-        qE: "The Coastal Cargo Promotion Scheme aims to increase the share of inland waterways and coastal shipping to what percentage by 2047?",
-        qT: "கடலோர சரக்கு ஊக்குவிப்புத் திட்டம் 2047-க்குள் உள்நாட்டு நீர்வழிகள் மற்றும் கடலோர கப்பல் போக்குவரத்தின் பங்கை எத்தனை சதவீதமாக உயர்த்த இலக்கு வைத்துள்ளது?",
-        oE: ["12%", "8%", "10%", "15%"],
-        oT: ["12%", "8%", "10%", "15%"],
+        qE: "Which characteristic represents the ability of a computer to work continuously on repetitive tasks without fatigue or boredom?",
+        qT: "சோர்வு அல்லது சலிப்பு இல்லாமல் ஒரே வேலையைத் தொடர்ந்து செய்யும் கணினியின் திறனை எந்தப் பண்பு குறிக்கிறது?",
+        oE: ["Diligence", "Speed", "Accuracy", "Versatility"],
+        oT: ["விடாமுயற்சி", "வேகம்", "துல்லியம்", "பன்முகத்தன்மை"],
         a: 0,
-        exp: "Under the Ministry of Ports, Shipping & Waterways, the Coastal Cargo Promotion Scheme targets a 12% freight share by 2047."
+        exp: "Diligence is the ability of a computer to perform repetitive tasks for long periods without getting tired, bored, or losing concentration."
     },
-    // 10
+    // 6 (a: 1)
     {
-        qE: "What is the primary objective of the 'PARIVARTAN Scheme' with an outlay of ₹9,585 crore?",
-        qT: "₹9,585 கோடி ஒதுக்கீட்டில் செயல்படுத்தப்படும் 'பரிவர்தன் திட்டத்தின்' முதன்மை நோக்கம் என்ன?",
-        oE: ["Replacing old railway coaches", "Replacing old agricultural tractors", "Replacing old fishing vessels", "Replacing old trucks and buses in Delhi-NCR"],
-        oT: ["பழைய ரயில் பெட்டிகளை மாற்றுதல்", "பழைய வேளாண் டிராக்டர்களை மாற்றுதல்", "பழைய மீன்பிடிப் படகுகளை மாற்றுதல்", "டெல்லி-NCR பகுதியில் உள்ள பழைய லாரிகள் மற்றும் பேருந்துகளை மாற்றுதல்"],
-        a: 3,
-        exp: "PARIVARTAN accelerates the replacement of old polluting trucks and buses in Delhi-NCR with cleaner BS-VI and EV vehicles."
-    },
-    // 11
-    {
-        qE: "In which northeastern state was the ₹236 crore 'Mission Queen Pineapple' project launched in May 2026?",
-        qT: "மே 2026-இல் ₹236 கோடி மதிப்பிலான 'மிஷன் குயின் அன்னாசி' திட்டம் எந்த வடகிழக்கு மாநிலத்தில் தொடங்கப்பட்டது?",
-        oE: ["Assam", "Tripura", "Meghalaya", "Manipur"],
-        oT: ["அசாம்", "திரிபுரா", "மேகாலயா", "மணிப்பூர்"],
+        qE: "Which characteristic of a computer enables it to perform diverse tasks such as calculations, graphics, and communication?",
+        qT: "கணக்கீடுகள், கிராபிக்ஸ் மற்றும் தகவல் தொடர்பு போன்ற பல்வேறு பணிகளைச் செய்ய கணினிக்கு உதவும் பண்பு எது?",
+        oE: ["Speed", "Versatility", "Accuracy", "Automation"],
+        oT: ["வேகம்", "பன்முகத்தன்மை", "துல்லியம்", "தானியக்கம்"],
         a: 1,
-        exp: "Union Minister Jyotiraditya M. Scindia and Tripura CM Dr. Manik Saha launched Mission Queen Pineapple in Tripura for its GI-tagged fruit."
+        exp: "Versatility refers to a computer's ability to perform completely different types of work seamlessly."
     },
-    // 12
+    // 7 (a: 2)
     {
-        qE: "Which traditional product from Assam is being promoted as a global luxury brand under 'Mission Senehjori'?",
-        qT: "'மிஷன் சினேஜோரி' திட்டத்தின் கீழ் அசாமின் எந்த பாரம்பரியப் பொருள் உலகளாவிய ஆடம்பர பிராண்டாக ஊக்குவிக்கப்படுகிறது?",
-        oE: ["Eri Silk", "Pashmina Wool", "Muga Silk", "Patola Silk"],
-        oT: ["எரி பட்டு", "பஷ்மினா கம்பளி", "முகா பட்டு", "படோலா பட்டு"],
+        qE: "Which characteristic enables a computer to perform millions of complex calculations in a fraction of a second?",
+        qT: "ஒரு வினாடியின் சிறு பகுதிக்குள் மில்லியன் கணக்கான சிக்கலான கணக்கீடுகளைச் செய்ய கணினிக்கு உதவும் பண்பு எது?",
+        oE: ["Versatility", "Accuracy", "Speed", "Storage"],
+        oT: ["பன்முகத்தன்மை", "துல்லியம்", "வேகம்", "சேமிப்பு"],
         a: 2,
-        exp: "Mission Senehjori promotes Assam's GI-tagged Muga Silk, the world's only naturally golden-coloured silk."
+        exp: "Speed allows computers to process millions of instructions per second, commonly measured in MIPS or FLOPS."
     },
-    // 13
+    // 8 (a: 3)
     {
-        qE: "The 'SEHAT' initiative (Science Excellence for Health through Agricultural Transformation) is a joint effort of which two organisations?",
-        qT: "'சேஹத்' முன்முயற்சி எந்த இரு அமைப்புகளின் கூட்டு முயற்சியாகும்?",
-        oE: ["ICAR and NITI Aayog", "ICMR and DRDO", "NITI Aayog and ICMR", "ICMR and ICAR"],
-        oT: ["ஐ.சி.ஏ.ஆர் மற்றும் நிதி ஆயோக்", "ஐ.சி.எம்.ஆர் மற்றும் டிஆர்டிஓ", "நிதி ஆயோக் மற்றும் ஐ.சி.எம்.ஆர்", "ஐ.சி.எம்.ஆர் மற்றும் ஐ.சி.ஏ.ஆர்"],
+        qE: "Which sector extensively uses computers for online transactions, payroll processing, inventory control, and data analysis?",
+        qT: "ஆன்லைன் பரிவர்த்தனைகள், ஊதியச் செயலாக்கம், சரக்குக் கட்டுப்பாடு மற்றும் தரவுப் பகுப்பாய்விற்கு கணினிகளைப் பெருமளவில் பயன்படுத்தும் துறை எது?",
+        oE: ["Manufacturing Plants", "Research", "Service Industry", "Business and Commerce"],
+        oT: ["உற்பத்தி ஆலைகள்", "ஆராய்ச்சி", "சேவைத் துறை", "வணிகம் மற்றும் வர்த்தகம்"],
         a: 3,
-        exp: "Launched by Union Health Minister J. P. Nadda, SEHAT is a joint initiative of ICMR and ICAR to improve public health via nutrition and agriculture."
+        exp: "Business and Commerce relies heavily on computers for payroll, inventory tracking, e-commerce, digital payments, and data analysis."
     },
-    // 14
+    // 9 (a: 0)
     {
-        qE: "What is the primary purpose of the 'PM RAHAT Scheme' launched in February 2026?",
-        qT: "பிப்ரவரி 2026-இல் தொடங்கப்பட்ட 'பிரதம மந்திரி ராஹத் திட்டத்தின்' முதன்மை நோக்கம் என்ன?",
-        oE: ["Crop insurance for marginal farmers", "Cashless treatment for road accident victims", "Housing for disaster victims", "Health insurance for senior citizens"],
-        oT: ["குறு விவசாயிகளுக்கான பயிர் காப்பீடு", "சாலை விபத்தில் பாதிக்கப்பட்டவர்களுக்கு கட்டணமில்லா சிகிச்சை", "பேரிடர் பாதிக்கப்பட்டோருக்கான வீட்டுவசதி", "மூத்த குடிமக்களுக்கான மருத்துவக் காப்பீடு"],
-        a: 1,
-        exp: "PM RAHAT provides cashless medical treatment of up to ₹1.5 lakh for road accident victims."
-    },
-    // 15
-    {
-        qE: "Till which year has the Jal Jeevan Mission (JJM 2.0) been extended to provide 'Har Ghar Jal' status to all Gram Panchayats?",
-        qT: "அனைத்து கிராம பஞ்சாயத்துகளுக்கும் 'ஹர் கர் ஜல்' அந்தஸ்து வழங்க ஜல் ஜீவன் இயக்கம் 2.0 எந்த ஆண்டு வரை நீட்டிக்கப்பட்டுள்ளது?",
-        oE: ["2026", "2027", "2028", "2030"],
-        oT: ["2026", "2027", "2028", "2030"],
-        a: 2,
-        exp: "Jal Jeevan Mission (JJM 2.0) under the Ministry of Jal Shakti has been extended till 2028."
-    },
-    // 16
-    {
-        qE: "What is the financial incentive provided to first-time private-sector employees under the Pradhan Mantri Viksit Bharat Rozgar Yojana?",
-        qT: "பிரதம மந்திரி விக்சித் பாரத் ரோஜ்கர் யோஜனாவின் கீழ் தனியார் துறையில் முதன்முறையாகப் பணியில் சேரும் ஊழியர்களுக்கு வழங்கப்படும் ஊக்கத்தொகை எவ்வளவு?",
-        oE: ["₹15,000", "₹10,000", "₹20,000", "₹25,000"],
-        oT: ["₹15,000", "₹10,000", "₹20,000", "₹25,000"],
+        qE: "Which major technological advancement characterizes the fourth generation of computers?",
+        qT: "நான்காம் தலைமுறைக் கணினிகளின் முக்கியத் தொழில்நுட்ப முன்னேற்றம் எது?",
+        oE: ["Microprocessors", "Transistors", "Vacuum tubes", "Integrated circuits"],
+        oT: ["நுண்செயலிகள்", "டிரான்சிஸ்டர்கள்", "வெற்றிடக் குழாய்கள்", "ஒருங்கிணைந்த சுற்றுகள்"],
         a: 0,
-        exp: "With a ₹1 lakh crore outlay under the Ministry of Labour & Employment, PM Viksit Bharat Rozgar Yojana targets 3.5 crore jobs and gives ₹15,000 to first-time private-sector employees."
+        exp: "Fourth-generation computers (1971–present) use microprocessors, integrating thousands of circuits onto a single silicon chip."
     },
-    // 17
+    // 10 (a: 1)
     {
-        qE: "By what other name is the Ministry of Textiles' 'Mission for Cotton Productivity' known?",
-        qT: "ஜவுளித் துறை அமைச்சகத்தின் 'பருத்தி உற்பத்தித்திறன் இயக்கம்' வேறு எவ்வாறு அழைக்கப்படுகிறது?",
-        oE: ["KAPAS SHAKTI", "KAPAS KANTI", "COTTON MITRA", "KAPAS VIKAS"],
-        oT: ["கபாஸ் சக்தி", "கபாஸ் காந்தி", "காட்டன் மித்ரா", "கபாஸ் விகாஸ்"],
+        qE: "Which generation of computers was defined by the use of Integrated Circuits (ICs)?",
+        qT: "ஒருங்கிணைந்த சுற்றுகளின் பயன்பாட்டால் வரையறுக்கப்பட்ட கணினித் தலைமுறை எது?",
+        oE: ["Second generation", "Third generation", "First generation", "Fourth generation"],
+        oT: ["இரண்டாம் தலைமுறை", "மூன்றாம் தலைமுறை", "முதல் தலைமுறை", "நான்காம் தலைமுறை"],
         a: 1,
-        exp: "The Mission for Cotton Productivity (outlay ₹5,659.22 crore) is also known as KAPAS KANTI."
+        exp: "First generation used vacuum tubes, second used transistors, third used Integrated Circuits (ICs), and fourth used microprocessors."
     },
-    // 18
+    // 11 (a: 2)
     {
-        qE: "Which agency implements the 'Small Hydro Power Development Scheme' under the Ministry of New and Renewable Energy?",
-        qT: "புதிய மற்றும் புதுப்பிக்கத்தக்க எரிசக்தி அமைச்சகத்தின் கீழ் 'சிறு நீர்மின்சார மேம்பாட்டுத் திட்டத்தை' செயல்படுத்தும் நிறுவனம் எது?",
-        oE: ["NTPC Limited", "NHPC Limited", "Solar Energy Corporation of India", "Power Grid Corporation"],
-        oT: ["என்.டி.பி.சி லிமிடெட்", "என்.எச்.பி.சி லிமிடெட்", "இந்திய சூரிய ஆற்றல் கழகம்", "பவர் கிரிட் கார்ப்பரேஷன்"],
+        qE: "Which of the following directly demonstrates the use of computers in scientific research?",
+        qT: "பின்வருவனவற்றில் அறிவியல் ஆராய்ச்சியில் கணினிகளின் பயன்பாட்டை நேரடியாகக் காட்டுவது எது?",
+        oE: ["Online shopping", "Ticket reservation", "Simulation of experiments", "Word processing"],
+        oT: ["ஆன்லைன் ஷாப்பிங்", "டிக்கெட் முன்பதிவு", "சோதனைகளின் உருவகப்படுத்துதல்", "சொல் செயலாக்கம்"],
         a: 2,
-        exp: "The Small Hydro Power Development Scheme (outlay ₹2,584.60 crore, target 1,500 MW) is implemented by the Solar Energy Corporation of India (SECI)."
+        exp: "Simulation of experiments allows scientists to model weather patterns and chemical reactions virtually without physical risks or high costs."
     },
-
-    // ================= 12 SOURCES OF INDIAN CONSTITUTION MCQS (Q19 - Q30) =================
-    // 19
+    // 12 (a: 3)
     {
-        qE: "From which source has the Indian Constitution borrowed the Federal System, Office of Governor, and Public Service Commission?",
-        qT: "கூட்டாட்சி அமைப்பு, ஆளுநர் பதவி மற்றும் பொதுப் பணியாளர் தேர்வாணையம் ஆகியவை இந்திய அரசியலமைப்பில் எந்த மூலத்திலிருந்து எடுக்கப்பட்டன?",
-        oE: ["Government of India Act 1935", "Constitution of Canada", "Constitution of the UK", "Constitution of the USA"],
-        oT: ["இந்திய அரசுச் சட்டம் 1935", "கனடா அரசியலமைப்பு", "இங்கிலாந்து அரசியலமைப்பு", "அமெரிக்க அரசியலமைப்பு"],
-        a: 0,
-        exp: "The Federal System, Office of Governor, and Public Service Commission were borrowed from the Government of India Act, 1935."
-    },
-    // 20
-    {
-        qE: "The Concurrent List and the provision for a Joint-sitting of the two Houses of Parliament were borrowed from which country?",
-        qT: "பொதுப் பட்டியல் மற்றும் நாடாளுமன்றத்தின் இரு அவைகளின் கூட்டுக் கூட்டம் ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
-        oE: ["Canada", "United Kingdom", "Ireland", "Australia"],
-        oT: ["கனடா", "இங்கிலாந்து", "அயர்லாந்து", "ஆஸ்திரேலியா"],
+        qE: "Movie studios using powerful computers to create special effects (CGI) and animations is an application of computers in which field?",
+        qT: "திரைப்பட நிறுவனங்கள் சிறப்பு விளைவுகள் மற்றும் அனிமேஷன்களை உருவாக்க சக்திவாய்ந்த கணினிகளைப் பயன்படுத்துவது எந்தத் துறையின் பயன்பாடாகும்?",
+        oE: ["Accounting", "Scientific research", "Banking", "Entertainment"],
+        oT: ["கணக்கியல்", "அறிவியல் ஆராய்ச்சி", "வங்கித் துறை", "பொழுதுபோக்கு"],
         a: 3,
-        exp: "Australia is the source of the Concurrent List, freedom of trade/commerce/intercourse, language of the Preamble, and joint-sitting of Parliament."
+        exp: "Creating CGI special effects and animations for films falls under the Entertainment industry."
     },
-    // 21
+    // 13 (a: 0)
     {
-        qE: "Vesting of residuary powers in the Centre and the advisory jurisdiction of the Supreme Court were borrowed from which country?",
-        qT: "எஞ்சிய அதிகாரங்களை மத்திய அரசிடம் வழங்குதல் மற்றும் உச்ச நீதிமன்றத்தின் ஆலோசனை அதிகார வரம்பு ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
-        oE: ["United States", "Australia", "Canada", "Germany"],
-        oT: ["அமெரிக்கா", "ஆஸ்திரேலியா", "கனடா", "ஜெர்மனி"],
-        a: 2,
-        exp: "Canada is the source of a federation with a strong Centre, residuary powers in the Centre, appointment of state governors by the Centre, and advisory jurisdiction of the Supreme Court."
-    },
-    // 22
-    {
-        qE: "The Directive Principles of State Policy (DPSP) and the nomination of members to the Rajya Sabha were borrowed from which country?",
-        qT: "அரசு நெறிமுறைக் கோட்பாடுகள் மற்றும் மாநிலங்களவைக்கு உறுப்பினர்களை நியமிக்கும் முறை ஆகியவை எந்த நாட்டிலிருந்து எடுக்கப்பட்டன?",
-        oE: ["Ireland", "South Africa", "United Kingdom", "France"],
-        oT: ["அயர்லாந்து", "தென்னாப்பிரிக்கா", "இங்கிலாந்து", "பிரான்ஸ்"],
+        qE: "Who is widely regarded as the 'Father of Computers' for designing the first mechanical computing device?",
+        qT: "முதல் இயந்திரக் கணினி சாதனத்தை வடிவமைத்ததற்காக 'கணினியின் தந்தை' எனப் பரவலாகப் போற்றப்படுபவர் யார்?",
+        oE: ["Charles Babbage", "Blaise Pascal", "Alan Turing", "John von Neumann"],
+        oT: ["சார்லஸ் பாபேஜ்", "பிளைஸ் பாஸ்கல்", "ஆலன் டூரிங்", "ஜான் வான் நியூமன்"],
         a: 0,
-        exp: "Ireland is the source of DPSP, nomination of members to the Rajya Sabha, and the method of election of the President."
+        exp: "Charles Babbage designed the Analytical Engine in the 1830s, which laid out the fundamental framework of modern computers."
     },
-    // 23
+    // 14 (a: 1)
     {
-        qE: "From which country did the Indian Constitution borrow the concept of 'Procedure Established by Law'?",
-        qT: "'சட்டத்தால் நிறுவப்பட்ட நடைமுறை' என்ற கருத்து இந்திய அரசியலமைப்பில் எந்த நாட்டிலிருந்து பெறப்பட்டது?",
-        oE: ["United Kingdom", "United States", "Germany", "Japan"],
-        oT: ["இங்கிலாந்து", "அமெரிக்கா", "ஜெர்மனி", "ஜப்பான்"],
-        a: 3,
-        exp: "'Procedure Established by Law' was borrowed from Japan."
-    },
-    // 24
-    {
-        qE: "Fundamental Duties and the ideals of social, economic, and political justice in the Preamble were borrowed from which country?",
-        qT: "அடிப்படைக் கடமைகள் மற்றும் முகவுரையில் உள்ள சமூக, பொருளாதார மற்றும் அரசியல் நீதி ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
-        oE: ["France", "USSR", "Ireland", "Canada"],
-        oT: ["பிரான்ஸ்", "சோவியத் யூனியன்", "அயர்லாந்து", "கனடா"],
+        qE: "Who invented the 'Pascaline', an early mechanical calculator?",
+        qT: "ஆரம்பகால இயந்திரக் கணக்கீட்டுக் கருவியான 'பாஸ்கலைன்' கருவியைக் கண்டுபிடித்தவர் யார்?",
+        oE: ["Charles Babbage", "Blaise Pascal", "Howard Aiken", "John Atanasoff"],
+        oT: ["சார்லஸ் பாபேஜ்", "பிளைஸ் பாஸ்கல்", "ஹோவர்ட் ஐகன்", "ஜான் அடானாசோஃப்"],
         a: 1,
-        exp: "Fundamental Duties and the ideals of social, economic, and political justice in the Preamble were borrowed from the USSR (Russia)."
+        exp: "Blaise Pascal invented the Pascaline, an early mechanical calculator."
     },
-    // 25
+    // 15 (a: 2)
     {
-        qE: "Single Citizenship, Rule of Law, Bicameralism, and Prerogative Writs were borrowed from which country?",
-        qT: "ஒற்றைக் குடியுரிமை, சட்டத்தின் ஆட்சி, ஈரவை சட்டமன்றம் மற்றும் நீதிப்பேராணைகள் ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
-        oE: ["United Kingdom", "United States", "Canada", "Australia"],
-        oT: ["இங்கிலாந்து", "அமெரிக்கா", "கனடா", "ஆஸ்திரேலியா"],
-        a: 0,
-        exp: "The UK is the source of Parliamentary government, Rule of Law, Single Citizenship, Cabinet system, Bicameralism, and Writs."
-    },
-    // 26
-    {
-        qE: "Judicial Review, the post of Vice-President, and the impeachment of the President were borrowed from which country?",
-        qT: "நீதித்துறை மறுஆய்வு, துணைக் குடியரசுத் தலைவர் பதவி மற்றும் குடியரசுத் தலைவரைப் பதவி நீக்கம் செய்யும் முறை ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
-        oE: ["United Kingdom", "Canada", "Ireland", "United States"],
-        oT: ["இங்கிலாந்து", "கனடா", "அயர்லாந்து", "அமெரிக்கா"],
-        a: 3,
-        exp: "The US Constitution is the source of Fundamental Rights, Independent Judiciary, Judicial Review, Impeachment of President, removal of SC/HC judges, and the post of Vice-President."
-    },
-    // 27
-    {
-        qE: "The provision for the suspension of Fundamental Rights during an emergency was borrowed from which country?",
-        qT: "அவசரநிலையின் போது அடிப்படை உரிமைகளை நிறுத்தி வைக்கும் விதி எந்த நாட்டிலிருந்து பெறப்பட்டது?",
-        oE: ["USSR", "Germany", "South Africa", "Japan"],
-        oT: ["சோவியத் யூனியன்", "ஜெர்மனி", "தென்னாப்பிரிக்கா", "ஜப்பான்"],
-        a: 1,
-        exp: "The suspension of Fundamental Rights during an emergency was borrowed from the Weimar Constitution of Germany."
-    },
-    // 28
-    {
-        qE: "The procedure for amending the Constitution and the election of members of the Rajya Sabha were borrowed from which country?",
-        qT: "அரசியலமைப்புத் திருத்த நடைமுறை மற்றும் மாநிலங்களவை உறுப்பினர்களின் தேர்தல் முறை ஆகியவை எந்த நாட்டிலிருந்து பெறப்பட்டன?",
-        oE: ["Ireland", "Australia", "South Africa", "France"],
-        oT: ["அயர்லாந்து", "ஆஸ்திரேலியா", "தென்னாப்பிரிக்கா", "பிரான்ஸ்"],
+        qE: "Which of the following best describes a Local Area Network (LAN)?",
+        qT: "பின்வருவனவற்றில் உள்ளூர் பகுதி வலையமைப்பை மிகச் சிறப்பாக விவரிப்பது எது?",
+        oE: ["A storage device used to read optical discs", "A high-capacity compact disc format", "A network covering a small geographical area like an office or school", "A code used to represent characters in numbers"],
+        oT: ["ஆப்டிகல் டிஸ்க்குகளைப் படிக்கப் பயன்படும் சேமிப்பு சாதனம்", "அதிக திறன் கொண்ட குறுவட்டு வடிவம்", "அலுவலகம் அல்லது பள்ளி போன்ற சிறிய புவியியல் பகுதியை உள்ளடக்கிய வலையமைப்பு", "எழுத்துக்களை எண்களாகக் குறிக்கப் பயன்படும் குறியீடு"],
         a: 2,
-        exp: "South Africa is the source of the constitutional amendment procedure and the election of members of the Rajya Sabha."
+        exp: "A LAN interconnects computers within a limited geographical area such as a home, school, laboratory, or office building."
     },
-    // 29
+    // 16 (a: 3)
     {
-        qE: "The ideals of 'Republic' and 'Liberty, Equality, and Fraternity' in the Preamble were borrowed from which country?",
-        qT: "முகவுரையில் உள்ள 'குடியரசு' மற்றும் 'சுதந்திரம், சமத்துவம், சகோதரத்துவம்' ஆகிய கொள்கைகள் எந்த நாட்டிலிருந்து பெறப்பட்டன?",
-        oE: ["USSR", "United States", "Ireland", "France"],
-        oT: ["சோவியத் யூனியன்", "அமெரிக்கா", "அயர்லாந்து", "பிரான்ஸ்"],
+        qE: "Preparing report cards, maintaining student records, and creating question papers belong mainly to which area of computer application?",
+        qT: "மதிப்பெண் பட்டியல்கள் தயாரித்தல், மாணவர் பதிவுகளைப் பராமரித்தல் மற்றும் வினாத்தாள்களை உருவாக்குதல் ஆகியவை கணினிப் பயன்பாட்டின் எந்தப் பிரிவைச் சேர்ந்தவை?",
+        oE: ["Space research", "Business marketing", "Automobile control", "Education administration"],
+        oT: ["விண்வெளி ஆராய்ச்சி", "வணிக சந்தைப்படுத்தல்", "வாகனக் கட்டுப்பாடு", "கல்வி நிர்வாகம்"],
         a: 3,
-        exp: "France is the source of the Republic system and the ideals of Liberty, Equality, and Fraternity in the Preamble."
+        exp: "Managing student databases, drafting exam papers, and preparing report cards are core functions of Education Administration."
     },
-    // 30
+    // 17 (a: 0)
     {
-        qE: "The appointment of state governors by the Centre was borrowed from which country's constitution?",
-        qT: "மத்திய அரசால் மாநில ஆளுநர்கள் நியமிக்கப்படும் முறை எந்த நாட்டின் அரசியலமைப்பிலிருந்து பெறப்பட்டது?",
-        oE: ["Australia", "Canada", "United Kingdom", "Ireland"],
-        oT: ["ஆஸ்திரேலியா", "கனடா", "இங்கிலாந்து", "அயர்லாந்து"],
-        a: 1,
-        exp: "While the Office of Governor comes from the GOI Act 1935, the appointment of state governors by the Centre was borrowed from Canada."
-    },
-
-    // ================= 15 AMENDMENTS OF INDIAN CONSTITUTION MCQS (Q31 - Q45) =================
-    // 31
-    {
-        qE: "Which Constitutional Amendment Act added the Ninth Schedule to the Indian Constitution in 1951?",
-        qT: "1951-ஆம் ஆண்டு இந்திய அரசியலமைப்பில் ஒன்பதாவது அட்டவணையைச் சேர்த்த அரசியலமைப்புத் திருத்தச் சட்டம் எது?",
-        oE: ["7th Amendment Act", "21st Amendment Act", "First Amendment Act", "42nd Amendment Act"],
-        oT: ["7வது திருத்தச் சட்டம்", "21வது திருத்தச் சட்டம்", "முதல் திருத்தச் சட்டம்", "42வது திருத்தச் சட்டம்"],
-        a: 2,
-        exp: "The First Amendment Act, 1951 added the Ninth Schedule to the Indian Constitution."
-    },
-    // 32
-    {
-        qE: "Which Amendment Act introduced the concept of a joint High Court for two or more states and proposed the establishment of Union Territories?",
-        qT: "இரண்டு அல்லது அதற்கு மேற்பட்ட மாநிலங்களுக்குப் பொதுவான உயர் நீதிமன்றம் மற்றும் யூனியன் பிரதேசங்களை உருவாக்குவதை முன்மொழிந்த திருத்தச் சட்டம் எது?",
-        oE: ["7th Amendment Act, 1956", "First Amendment Act, 1951", "31st Amendment Act, 1972", "36th Amendment Act, 1975"],
-        oT: ["7வது திருத்தச் சட்டம், 1956", "முதல் திருத்தச் சட்டம், 1951", "31வது திருத்தச் சட்டம், 1972", "36வது திருத்தச் சட்டம், 1975"],
+        qE: "Which IEEE standard is commonly used for wired Ethernet Local Area Networks (LANs)?",
+        qT: "கம்பி இணைப்பு ஈதர்நெட் உள்ளூர் பகுதி வலையமைப்புகளுக்குப் பொதுவாகப் பயன்படுத்தப்படும் IEEE தரநிலை எது?",
+        oE: ["IEEE 802.3", "IEEE 802.11", "IEEE 802.15", "IEEE 802.16"],
+        oT: ["IEEE 802.3", "IEEE 802.11", "IEEE 802.15", "IEEE 802.16"],
         a: 0,
-        exp: "The 7th Amendment Act, 1956 introduced a joint High Court for two or more states and proposed Union Territories."
+        exp: "IEEE 802.3 defines wired Ethernet LANs, specifying physical layer and MAC sublayer connectivity."
     },
-    // 33
+    // 18 (a: 1)
     {
-        qE: "Which Constitutional Amendment Act elevated Sikkim to the status of a full-fledged state of India in 1975?",
-        qT: "1975-ஆம் ஆண்டு சிக்கிமை இந்தியாவின் முழுமையான மாநிலமாக உயர்த்திய அரசியலமைப்புத் திருத்தச் சட்டம் எது?",
-        oE: ["35th Amendment Act", "36th Amendment Act", "31st Amendment Act", "42nd Amendment Act"],
-        oT: ["35வது திருத்தச் சட்டம்", "36வது திருத்தச் சட்டம்", "31வது திருத்தச் சட்டம்", "42வது திருத்தச் சட்டம்"],
+        qE: "Which IEEE standard is used for wireless personal area networks (WPANs) such as Bluetooth?",
+        qT: "புளூடூத் போன்ற கம்பியில்லா தனிநபர் பகுதி வலையமைப்புகளுக்குப் பயன்படுத்தப்படும் IEEE தரநிலை எது?",
+        oE: ["IEEE 802.3", "IEEE 802.15", "IEEE 802.11", "IEEE 802.16"],
+        oT: ["IEEE 802.3", "IEEE 802.15", "IEEE 802.11", "IEEE 802.16"],
         a: 1,
-        exp: "While the 35th Amendment Act (1974) made Sikkim an Associate State, the 36th Amendment Act (1975) made it a full-fledged state."
+        exp: "IEEE 802.15 is for WPANs like Bluetooth, IEEE 802.11 is for Wi-Fi, and IEEE 802.16 is for WiMAX."
     },
-    // 34
+    // 19 (a: 2)
     {
-        qE: "Which three words were added to the Preamble by the 42nd Constitutional Amendment Act, 1976?",
-        qT: "1976-ஆம் ஆண்டின் 42வது அரசியலமைப்புத் திருத்தச் சட்டத்தால் முகவுரையில் சேர்க்கப்பட்ட மூன்று சொற்கள் எவை?",
-        oE: ["Liberty, Equality, Fraternity", "Sovereign, Democratic, Republic", "Socialist, Secular, Integrity", "Justice, Liberty, Integrity"],
-        oT: ["சுதந்திரம், சமத்துவம், சகோதரத்துவம்", "இறையாண்மை, மக்களாட்சி, குடியரசு", "சோசலிசம், மதச்சார்பின்மை, ஒருமைப்பாடு", "நீதி, சுதந்திரம், ஒருமைப்பாடு"],
+        qE: "Which of the following was the first fully functional large-scale automatic electro-mechanical computer, completed in 1944?",
+        qT: "1944-இல் நிறைவடைந்த முதல் முழுமையாகச் செயல்படும் பெரிய அளவிலான தானியங்கி மின்-இயந்திரக் கணினி எது?",
+        oE: ["ENIAC", "EDVAC", "Mark I", "UNIVAC"],
+        oT: ["எனியாக்", "எட்வாக்", "மார்க் I", "யுனிவாக்"],
         a: 2,
-        exp: "The 42nd Amendment Act, 1976 (Mini Constitution) added the words Socialist, Secular, and Integrity to the Preamble."
+        exp: "The Harvard Mark I (Automatic Sequence Controlled Calculator), completed in 1944 by Howard Aiken, was the first electro-mechanical computer."
     },
-    // 35
+    // 20 (a: 3)
     {
-        qE: "On the recommendations of which committee were 10 Fundamental Duties added under Article 51A by the 42nd Amendment Act?",
-        qT: "42வது திருத்தச் சட்டத்தின் மூலம் பிரிவு 51A-இன் கீழ் 10 அடிப்படைக் கடமைகள் எந்தக் குழுவின் பரிந்துரையின் பேரில் சேர்க்கப்பட்டன?",
-        oE: ["Swaran Singh Committee", "Sarkaria Commission", "Balwant Rai Mehta Committee", "Verma Committee"],
-        oT: ["சுவரன் சிங் குழு", "சர்க்காரியா ஆணையம்", "பல்வந்த் ராய் மேத்தா குழு", "வர்மா குழு"],
-        a: 0,
-        exp: "10 Fundamental Duties were added under Article 51A based on the recommendations of the Swaran Singh Committee."
-    },
-    // 36
-    {
-        qE: "Which Amendment Act deleted the Right to Property from Fundamental Rights (Article 31) and made it a legal right under Article 300A?",
-        qT: "சொத்துரிமையை அடிப்படை உரிமைகளிலிருந்து நீக்கி, பிரிவு 300A-இன் கீழ் சட்ட உரிமையாக மாற்றிய திருத்தச் சட்டம் எது?",
-        oE: ["42nd Amendment Act, 1976", "52nd Amendment Act, 1985", "61st Amendment Act, 1989", "44th Amendment Act, 1978"],
-        oT: ["42வது திருத்தச் சட்டம், 1976", "52வது திருத்தச் சட்டம், 1985", "61வது திருத்தச் சட்டம், 1989", "44வது திருத்தச் சட்டம், 1978"],
+        qE: "Which computing pioneer is credited with the concept of 'stored-program architecture', where both instructions and data are held in the same memory?",
+        qT: "நிரல் கட்டளைகள் மற்றும் தரவு இரண்டும் ஒரே நினைவகத்தில் சேமிக்கப்படும் 'சேமிக்கப்பட்ட-நிரல் கட்டமைப்பு' கருத்தை வழங்கிய முன்னோடி யார்?",
+        oE: ["Blaise Pascal", "Alan Turing", "Charles Babbage", "John von Neumann"],
+        oT: ["பிளைஸ் பாஸ்கல்", "ஆலன் டூரிங்", "சார்லஸ் பாபேஜ்", "ஜான் வான் நியூமன்"],
         a: 3,
-        exp: "The 44th Amendment Act, 1978 deleted the Right to Property from Fundamental Rights and placed it as a legal right under Article 300A."
+        exp: "John von Neumann proposed the stored-program architecture (Von Neumann architecture) that forms the basis of nearly all modern computers."
     },
-    // 37
+    // 21 (a: 0)
     {
-        qE: "Which Constitutional Amendment Act added the 10th Schedule containing anti-defection legislation in 1985?",
-        qT: "1985-ஆம் ஆண்டு கட்சித் தாவல் தடைச் சட்டத்தைக் கொண்ட 10வது அட்டவணையைச் சேர்த்த அரசியலமைப்புத் திருத்தச் சட்டம் எது?",
-        oE: ["44th Amendment Act", "61st Amendment Act", "52nd Amendment Act", "65th Amendment Act"],
-        oT: ["44வது திருத்தச் சட்டம்", "61வது திருத்தச் சட்டம்", "52வது திருத்தச் சட்டம்", "65வது திருத்தச் சட்டம்"],
-        a: 2,
-        exp: "The 52nd Amendment Act, 1985 added the 10th Schedule to include anti-defection legislation."
-    },
-    // 38
-    {
-        qE: "Which Amendment Act reduced the voting age in India from 21 years to 18 years in 1989?",
-        qT: "1989-ஆம் ஆண்டு இந்தியாவில் வாக்களிக்கும் வயதை 21-லிருந்து 18 ஆகக் குறைத்த திருத்தச் சட்டம் எது?",
-        oE: ["61st Amendment Act", "52nd Amendment Act", "69th Amendment Act", "73rd Amendment Act"],
-        oT: ["61வது திருத்தச் சட்டம்", "52வது திருத்தச் சட்டம்", "69வது திருத்தச் சட்டம்", "73வது திருத்தச் சட்டம்"],
+        qE: "Which machine was designed by Charles Babbage in the 1830s incorporating an Arithmetic Logic Unit, control flow, and integrated memory?",
+        qT: "1830-களில் எண்கணித தர்க்க அலகு, கட்டுப்பாட்டு ஓட்டம் மற்றும் ஒருங்கிணைந்த நினைவகத்துடன் சார்லஸ் பாபேஜ் வடிவமைத்த இயந்திரம் எது?",
+        oE: ["Analytical Engine", "Atanasoff-Berry Computer", "UNIVAC", "ENIAC"],
+        oT: ["பகுப்பாய்வு இயந்திரம்", "அடானாசோஃப்-பெர்ரி கணினி", "யுனிவாக்", "எனியாக்"],
         a: 0,
-        exp: "The 61st Amendment Act, 1989 lowered the voting age from 21 to 18."
+        exp: "Charles Babbage designed the Analytical Engine in the 1830s as the first proposed general-purpose mechanical computer."
     },
-    // 39
+    // 22 (a: 1)
     {
-        qE: "Which Constitutional Amendment Act designated the Union Territory of Delhi as the 'National Capital Territory of Delhi'?",
-        qT: "டெல்லி யூனியன் பிரதேசத்தை 'டெல்லி தேசியத் தலைநகர் பகுதி' என அறிவித்த அரசியலமைப்புத் திருத்தச் சட்டம் எது?",
-        oE: ["61st Amendment Act, 1989", "65th Amendment Act, 1990", "73rd Amendment Act, 1992", "69th Amendment Act, 1991"],
-        oT: ["61வது திருத்தச் சட்டம், 1989", "65வது திருத்தச் சட்டம், 1990", "73வது திருத்தச் சட்டம், 1992", "69வது திருத்தச் சட்டம், 1991"],
-        a: 3,
-        exp: "The 69th Amendment Act, 1991 designated the Union Territory of Delhi as the National Capital Territory of Delhi."
-    },
-    // 40
-    {
-        qE: "Which three languages were added to the 8th Schedule by the 71st Amendment Act, 1992?",
-        qT: "1992-ஆம் ஆண்டின் 71வது திருத்தச் சட்டத்தால் 8வது அட்டவணையில் சேர்க்கப்பட்ட மூன்று மொழிகள் எவை?",
-        oE: ["Bodo, Dogri, and Santali", "Konkani, Manipuri, and Nepali", "Sindhi, Konkani, and Maithili", "Manipuri, Dogri, and Nepali"],
-        oT: ["போடோ, டோக்ரி மற்றும் சந்தாலி", "கொங்கனி, மணிப்பூரி மற்றும் நேபாளி", "சிந்தி, கொங்கனி மற்றும் மைதிலி", "மணிப்பூரி, டோக்ரி மற்றும் நேபாளி"],
+        qE: "Which computer was the first commercial electronic digital computer?",
+        qT: "முதல் வணிக மின்னணு டிஜிட்டல் கணினி எது?",
+        oE: ["ENIAC", "UNIVAC", "Mark I", "EDVAC"],
+        oT: ["எனியாக்", "யுனிவாக்", "மார்க் I", "எட்வாக்"],
         a: 1,
-        exp: "The 71st Amendment Act, 1992 added Konkani, Manipuri, and Nepali, bringing the total to 18 languages (later 92nd Amendment added Bodo, Dogri, Maithili, and Santali)."
+        exp: "UNIVAC (Universal Automatic Computer) was the first commercial electronic digital computer, while ENIAC (1945) was the first general-purpose fully electronic digital computer."
     },
-    // 41
+    // 23 (a: 2)
     {
-        qE: "Which Amendment Act added Article 21-A providing free and compulsory education to all children aged 6 to 14 years?",
-        qT: "6 முதல் 14 வயது வரையிலான அனைத்துக் குழந்தைகளுக்கும் இலவச மற்றும் கட்டாயக் கல்வியை வழங்கும் பிரிவு 21-A-ஐச் சேர்த்த திருத்தச் சட்டம் எது?",
-        oE: ["86th Amendment Act, 2002", "73rd Amendment Act, 1992", "91st Amendment Act, 2003", "97th Amendment Act, 2012"],
-        oT: ["86வது திருத்தச் சட்டம், 2002", "73வது திருத்தச் சட்டம், 1992", "91வது திருத்தச் சட்டம், 2003", "97வது திருத்தச் சட்டம், 2012"],
-        a: 0,
-        exp: "The 86th Amendment Act, 2002 inserted Article 21-A and added a new fundamental duty under Article 51-A for parents/guardians."
-    },
-    // 42
-    {
-        qE: "According to the 91st Amendment Act, 2003, the Council of Ministers shall not exceed what percentage of the total strength of the Lok Sabha?",
-        qT: "2003-ஆம் ஆண்டின் 91வது திருத்தச் சட்டத்தின்படி, அமைச்சரவை மக்களவையின் மொத்த உறுப்பினர் எண்ணிக்கையில் எத்தனை சதவீதத்திற்கு மிகாமல் இருக்க வேண்டும்?",
-        oE: ["10%", "12%", "20%", "15%"],
-        oT: ["10%", "12%", "20%", "15%"],
-        a: 3,
-        exp: "The 91st Amendment Act, 2003 capped the size of the Council of Ministers at 15% of the total strength of the Lok Sabha."
-    },
-    // 43
-    {
-        qE: "Which Constitutional Amendment Act granted constitutional status to the National Commission for Backward Classes in 2018?",
-        qT: "2018-ஆம் ஆண்டு தேசிய பிற்படுத்தப்பட்டோர் ஆணையத்திற்கு அரசியலமைப்பு அந்தஸ்து வழங்கிய திருத்தச் சட்டம் எது?",
-        oE: ["101st Amendment Act", "102nd Amendment Act", "103rd Amendment Act", "105th Amendment Act"],
-        oT: ["101வது திருத்தச் சட்டம்", "102வது திருத்தச் சட்டம்", "103வது திருத்தச் சட்டம்", "105வது திருத்தச் சட்டம்"],
-        a: 1,
-        exp: "The 102nd Amendment Act, 2018 granted constitutional status to the National Commission for Backward Classes."
-    },
-    // 44
-    {
-        qE: "Which Amendment Act removed the reserved seats for the Anglo-Indian community in the Lok Sabha and state assemblies?",
-        qT: "மக்களவை மற்றும் மாநில சட்டமன்றங்களில் ஆங்கிலோ-இந்திய சமூகத்திற்கான இடஒதுக்கீட்டை நீக்கிய திருத்தச் சட்டம் எது?",
-        oE: ["102nd Amendment Act, 2018", "103rd Amendment Act, 2019", "104th Amendment Act, 2020", "105th Amendment Act, 2021"],
-        oT: ["102வது திருத்தச் சட்டம், 2018", "103வது திருத்தச் சட்டம், 2019", "104வது திருத்தச் சட்டம், 2020", "105வது திருத்தச் சட்டம், 2021"],
+        qE: "Which of the following is a classic example of computer application in the service industry?",
+        qT: "பின்வருவனவற்றில் சேவைத் துறையில் கணினிப் பயன்பாட்டிற்குச் சிறந்த உதாரணம் எது?",
+        oE: ["Heart surgery monitoring", "Spacecraft navigation", "Automated ticket booking", "Automated car manufacturing"],
+        oT: ["இதய அறுவை சிகிச்சை கண்காணிப்பு", "விண்கல வழிகாட்டுதல்", "தானியங்கி டிக்கெட் முன்பதிவு", "தானியங்கி கார் உற்பத்தி"],
         a: 2,
-        exp: "The 104th Amendment Act, 2020 extended SC/ST seat reservation for 10 years and removed reserved seats for the Anglo-Indian community."
+        exp: "Automated ticket booking belongs to the service industry (hospitality, tourism, and transport)."
     },
-    // 45
+    // 24 (a: 3)
     {
-        qE: "What is the key provision of the 106th Constitutional Amendment Act, 2023?",
-        qT: "2023-ஆம் ஆண்டின் 106வது அரசியலமைப்புத் திருத்தச் சட்டத்தின் முக்கிய அம்சம் என்ன?",
-        oE: ["10% reservation for EWS citizens", "Reserves one-third of seats for women in Lok Sabha and State Legislative Assemblies", "Implementation of Goods and Services Tax", "Constitutional status to co-operative societies"],
-        oT: ["பொருளாதாரத்தில் பின்தங்கியோருக்கு 10% இடஒதுக்கீடு", "மக்களவை மற்றும் மாநில சட்டமன்றங்களில் பெண்களுக்கு மூன்றில் ஒரு பங்கு இடஒதுக்கீடு", "சரக்கு மற்றும் சேவை வரி அமலாக்கம்", "கூட்டுறவு சங்கங்களுக்கு அரசியலமைப்பு அந்தஸ்து"],
+        qE: "Which of the following applications are supercomputers primarily used for?",
+        qT: "சூப்பர் கம்ப்யூட்டர்கள் முதன்மையாகப் பின்வரும் எந்தப் பயன்பாட்டிற்குப் பயன்படுத்தப்படுகின்றன?",
+        oE: ["Word processing", "Internet browsing", "Office automation", "Complex mathematical calculations"],
+        oT: ["சொல் செயலாக்கம்", "இணைய உலாவல்", "அலுவலக தானியக்கம்", "சிக்கலான கணிதக் கணக்கீடுகள்"],
+        a: 3,
+        exp: "Supercomputers are designed for massive mathematical calculations such as weather forecasting, climate modeling, quantum mechanics, and nuclear fusion."
+    },
+    // 25 (a: 0)
+    {
+        qE: "A Local Area Network (LAN) enables resource sharing by connecting devices to the network medium through which specialized adapter?",
+        qT: "உள்ளூர் பகுதி வலையமைப்பில் சாதனங்களை வலையமைப்பு ஊடகத்துடன் இணைத்து வளப் பகிர்வுக்கு உதவும் சிறப்பு அடாப்டர் எது?",
+        oE: ["Network Interface Card", "Read-Only Memory", "Graphics Processing Unit", "Central Processing Unit"],
+        oT: ["நெட்வொர்க் இன்டர்ஃபேஸ் கார்டு", "படிக்க மட்டுமேயான நினைவகம்", "கிராபிக்ஸ் செயலாக்க அலகு", "மையச் செயலாக்க அலகு"],
+        a: 0,
+        exp: "A Network Interface Card (NIC) is the hardware component installed in a computer to provide a dedicated connection to a network like a LAN."
+    },
+    // 26 (a: 1)
+    {
+        qE: "Which hardware component is non-volatile memory primarily used to store firmware in a computer?",
+        qT: "கணினியில் ஃபார்ம்வேரைச் சேமிக்க முதன்மையாகப் பயன்படுத்தப்படும் அழியா நினைவக வன்பொருள் கூறு எது?",
+        oE: ["GPU", "ROM", "NIC", "ALU"],
+        oT: ["ஜிபியு", "ஆர்ஓஎம்", "என்ஐசி", "ஏஎல்யு"],
         a: 1,
-        exp: "The 106th Amendment Act, 2023 reserves 1/3rd of seats for women in the Lok Sabha, State Legislative Assemblies, and the Legislative Assembly of NCT Delhi."
+        exp: "Read-Only Memory (ROM) is non-volatile memory used to store firmware, while GPU renders images/video and CPU executes instructions."
+    },
+    // 27 (a: 2)
+    {
+        qE: "During group project file sharing in a classroom, a LAN directly connects which devices?",
+        qT: "வகுப்பறையில் குழுத் திட்டக் கோப்புப் பகிர்வின் போது, உள்ளூர் பகுதி வலையமைப்பு எந்தச் சாதனங்களை நேரடியாக இணைக்கிறது?",
+        oE: ["Global internet servers across continents", "Satellite phones for remote areas", "Local computers within the same building", "Devices paired over Bluetooth only"],
+        oT: ["கண்டங்களுக்கு இடையிலான உலகளாவிய இணையச் சேவையகங்கள்", "தொலைதூரப் பகுதிகளுக்கான செயற்கைக்கோள் தொலைபேசிகள்", "ஒரே கட்டிடத்திற்குள் உள்ள உள்ளூர் கணினிகள்", "புளூடூத் மூலம் மட்டுமே இணைக்கப்பட்ட சாதனங்கள்"],
+        a: 2,
+        exp: "A LAN directly connects local computers, printers, and devices within the same building or campus."
+    },
+    // 28 (a: 3)
+    {
+        qE: "Which characteristic enables a computer to start and complete a series of tasks automatically without human intervention once programmed?",
+        qT: "ஒருமுறை நிரலிடப்பட்ட பிறகு மனிதத் தலையீடு இன்றி தானாகவே பணிகளைத் தொடங்கி முடிக்கும் கணினியின் பண்பு எது?",
+        oE: ["Diligence", "Portability", "Accuracy", "Automation"],
+        oT: ["விடாமுயற்சி", "எடுத்துச் செல்லும் தன்மை", "துல்லியம்", "தானியக்கம்"],
+        a: 3,
+        exp: "Automation allows a computer to execute a sequence of operations automatically once the program is loaded."
+    },
+    // 29 (a: 0)
+    {
+        qE: "A computer lab server handling login requests from many students simultaneously without confusion mainly highlights which characteristic?",
+        qT: "கணினி ஆய்வகச் சேவையகம் பல மாணவர்களின் உள்நுழைவு கோரிக்கைகளைக் குழப்பமின்றி ஒரே நேரத்தில் கையாள்வது எந்தப் பண்பை முக்கியமாகக் காட்டுகிறது?",
+        oE: ["Multitasking and reliability", "Lack of memory", "Versatility only", "Portability"],
+        oT: ["பல்பணி மற்றும் நம்பகத்தன்மை", "நினைவகப் பற்றாக்குறை", "பன்முகத்தன்மை மட்டும்", "எடுத்துச் செல்லும் தன்மை"],
+        a: 0,
+        exp: "Handling multiple simultaneous login requests demonstrates multitasking, and doing so without errors demonstrates reliability."
+    },
+    // 30 (a: 1)
+    {
+        qE: "As computer generations progressed from the first to the fifth generation, which trend has generally been true?",
+        qT: "முதல் தலைமுறையிலிருந்து ஐந்தாம் தலைமுறை வரை கணினித் தலைமுறைகள் முன்னேறியபோது, பொதுவாக உண்மையாக இருந்த போக்கு எது?",
+        oE: ["Computers lost memory capacity", "Computers became smaller and faster", "Computers stopped using electricity", "Computers became larger and slower"],
+        oT: ["கணினிகள் நினைவகத் திறனை இழந்தன", "கணினிகள் சிறியதாகவும் வேகமானதாகவும் மாறின", "கணினிகள் மின்சாரத்தைப் பயன்படுத்துவதை நிறுத்தின", "கணினிகள் பெரியதாகவும் மெதுவானதாகவும் மாறின"],
+        a: 1,
+        exp: "Across generations, computers consistently became smaller in physical size, faster in processing speed, more energy-efficient, and more affordable."
+    },
+    // 31 (a: 2)
+    {
+        qE: "In which field are computers extensively used for weather forecasting, climate modeling, and satellite data processing?",
+        qT: "வானிலை முன்னறிவிப்பு, காலநிலை மாதிரியாக்கம் மற்றும் செயற்கைக்கோள் தரவுச் செயலாக்கம் ஆகியவற்றிற்குக் கணினிகள் எந்தத் துறையில் பெருமளவில் பயன்படுத்தப்படுகின்றன?",
+        oE: ["Sports Training", "Entertainment", "Space and Meteorology", "Agriculture"],
+        oT: ["விளையாட்டுப் பயிற்சி", "பொழுதுபோக்கு", "விண்வெளி மற்றும் வானிலையியல்", "வேளாண்மை"],
+        a: 2,
+        exp: "Space and Meteorology rely heavily on supercomputers for real-time weather forecasting, simulation, and satellite data analysis."
+    },
+    // 32 (a: 3)
+    {
+        qE: "What does the abbreviation 'ASCII' stand for in computing?",
+        qT: "கணினியியலில் 'ASCII' என்ற சுருக்கத்தின் விரிவாக்கம் என்ன?",
+        oE: ["Advanced System for Communication Interface", "American Standard Communication for Input and Interface", "Automated System Code for Internet Interchange", "American Standard Code for Information Interchange"],
+        oT: ["அட்வான்ஸ்டு சிஸ்டம் ஃபார் கம்யூனிகேஷன் இன்டர்ஃபேஸ்", "அமெரிக்கன் ஸ்டாண்டர்ட் கம்யூனிகேஷன் ஃபார் இன்புட் அண்ட் இன்டர்ஃபேஸ்", "ஆட்டோமேட்டட் சிஸ்டம் கோட் ஃபார் இன்டர்நெட் இன்டர்சேஞ்ச்", "அமெரிக்கன் ஸ்டாண்டர்ட் கோட் ஃபார் இன்ஃபர்மேஷன் இன்டர்சேஞ்ச்"],
+        a: 3,
+        exp: "ASCII stands for American Standard Code for Information Interchange, a standard character encoding format for electronic communication."
+    },
+    // 33 (a: 0)
+    {
+        qE: "What does the abbreviation 'MAN' stand for in computer networking?",
+        qT: "கணினி வலையமைப்பில் 'MAN' என்ற சுருக்கத்தின் விரிவாக்கம் என்ன?",
+        oE: ["Metropolitan Area Network", "Medium Access Network", "Mobile Area Network", "Main Access Node"],
+        oT: ["மெட்ரோபாலிட்டன் ஏரியா நெட்வொர்க்", "மீடியம் ஆக்சஸ் நெட்வொர்க்", "மொபைல் ஏரியா நெட்வொர்க்", "மெயின் ஆக்சஸ் நோட்"],
+        a: 0,
+        exp: "MAN stands for Metropolitan Area Network, connecting multiple LANs across a city or large campus, typically using fiber optics."
+    },
+    // 34 (a: 1)
+    {
+        qE: "What does 'GUI' stand for in the context of modern operating systems like Windows, macOS, and Android?",
+        qT: "விண்டோஸ், மேக்ஓஎஸ் மற்றும் ஆண்ட்ராய்டு போன்ற நவீன இயக்க முறைமைகளில் 'GUI' என்பதன் விரிவாக்கம் என்ன?",
+        oE: ["Graphical Unix Integration", "Graphical User Interface", "Global Utility Interface", "General User Instruction"],
+        oT: ["கிராபிக்கல் யூனிக்ஸ் இன்டெக்ரேஷன்", "கிராபிக்கல் யூசர் இன்டர்ஃபேஸ்", "குளோபல் யூட்டிலிட்டி இன்டர்ஃபேஸ்", "ஜெனரல் யூசர் இன்ஸ்ட்ரக்ஷன்"],
+        a: 1,
+        exp: "GUI stands for Graphical User Interface, enabling users to interact with devices through icons and visual indicators instead of text commands."
+    },
+    // 35 (a: 2)
+    {
+        qE: "A functional computer system operates on the IPO cycle, which mainly includes which three core components?",
+        qT: "ஒரு செயல்பாட்டுக் கணினி அமைப்பு இயங்கும் IPO சுழற்சியில் உள்ள மூன்று முக்கியக் கூறுகள் எவை?",
+        oE: ["Mouse, CPU, Mobile", "CPU, Scanner, Air Conditioner", "Input, Processing, Output", "Monitor, USB, Light"],
+        oT: ["மவுஸ், சிபியு, மொபைல்", "சிபியு, ஸ்கேனர், ஏர் கண்டிஷனர்", "உள்ளீடு, செயலாக்கம், வெளியீடு", "மானிட்டர், யுஎஸ்பி, ஒளி"],
+        a: 2,
+        exp: "A computer system operates on the Input–Processing–Output (IPO) cycle."
+    },
+    // 36 (a: 3)
+    {
+        qE: "In the context of Local Area Networks, what is the primary purpose of a MAC (Media Access Control) address?",
+        qT: "உள்ளூர் பகுதி வலையமைப்புகளில் MAC முகவரியின் முதன்மை நோக்கம் என்ன?",
+        oE: ["To specify the network protocol used for communication", "To define the physical layout and cabling of the network", "To provide a logical address for network routing", "To uniquely identify a network interface controller at the data link layer"],
+        oT: ["தொடர்புக்குப் பயன்படுத்தப்படும் வலையமைப்பு நெறிமுறையைக் குறிப்பிட", "வலையமைப்பின் இயற்பியல் அமைப்பு மற்றும் கேபிளிங்கை வரையறுக்க", "வலையமைப்பு ரூட்டிங்கிற்கான தர்க்க முகவரியை வழங்க", "தரவு இணைப்பு அடுக்கில் நெட்வொர்க் இன்டர்ஃபேஸ் கட்டுப்படுத்தியைத் தனித்துவமாக அடையாளம் காண"],
+        a: 3,
+        exp: "A MAC address is a unique physical identifier assigned by the manufacturer to a NIC, operating at Layer 2 (Data Link Layer) of the OSI model."
+    },
+    // 37 (a: 0)
+    {
+        qE: "At which layer of the OSI model do IP addresses operate to provide logical addressing for routing across networks?",
+        qT: "வலையமைப்புகளுக்கு இடையே ரூட்டிங் செய்வதற்கான தர்க்க முகவரியை வழங்கும் IP முகவரிகள் OSI மாதிரியின் எந்த அடுக்கில் செயல்படுகின்றன?",
+        oE: ["Layer 3", "Layer 1", "Layer 2", "Layer 4"],
+        oT: ["அடுக்கு 3", "அடுக்கு 1", "அடுக்கு 2", "அடுக்கு 4"],
+        a: 0,
+        exp: "IP addresses operate at Layer 3 (Network Layer) for logical addressing and routing, whereas MAC addresses operate at Layer 2 (Data Link Layer)."
+    },
+    // 38 (a: 1)
+    {
+        qE: "Which scientist is considered the father of modern computer science and artificial intelligence, famous for the Turing Machine concept?",
+        qT: "டூரிங் இயந்திரக் கருத்திற்குப் புகழ்பெற்றவரும், நவீன கணினி அறிவியல் மற்றும் செயற்கை நுண்ணறிவின் தந்தையாகக் கருதப்படுபவரும் யார்?",
+        oE: ["Charles Babbage", "Alan Turing", "John von Neumann", "Howard Aiken"],
+        oT: ["சார்லஸ் பாபேஜ்", "ஆலன் டூரிங்", "ஜான் வான் நியூமன்", "ஹோவர்ட் ஐகன்"],
+        a: 1,
+        exp: "Alan Turing is celebrated as the father of modern computer science and AI for his Turing Machine concept."
+    },
+    // 39 (a: 2)
+    {
+        qE: "Which computer built by John Atanasoff and Clifford Berry was the first automatic electronic digital computer?",
+        qT: "ஜான் அடானாசோஃப் மற்றும் கிளிஃபோர்ட் பெர்ரி ஆகியோரால் உருவாக்கப்பட்ட முதல் தானியங்கி மின்னணு டிஜிட்டல் கணினி எது?",
+        oE: ["Harvard Mark I", "UNIVAC", "Atanasoff-Berry Computer", "Analytical Engine"],
+        oT: ["ஹார்வர்ட் மார்க் I", "யுனிவாக்", "அடானாசோஃப்-பெர்ரி கணினி", "பகுப்பாய்வு இயந்திரம்"],
+        a: 2,
+        exp: "The Atanasoff-Berry Computer (ABC) was the first automatic electronic digital computer."
+    },
+    // 40 (a: 3)
+    {
+        qE: "Which IEEE standard is used for broadband wireless access technology such as WiMAX?",
+        qT: "வைமாக்ஸ் போன்ற அகண்ட அலைவரிசை கம்பியில்லா அணுகல் தொழில்நுட்பத்திற்குப் பயன்படுத்தப்படும் IEEE தரநிலை எது?",
+        oE: ["IEEE 802.3", "IEEE 802.11", "IEEE 802.15", "IEEE 802.16"],
+        oT: ["IEEE 802.3", "IEEE 802.11", "IEEE 802.15", "IEEE 802.16"],
+        a: 3,
+        exp: "IEEE 802.16 is the standard for broadband wireless access (WiMAX)."
+    },
+    // 41 (a: 0)
+    {
+        qE: "What does the computer speed unit 'MIPS' stand for?",
+        qT: "கணினி வேகத்தை அளவிடும் 'MIPS' என்ற அலகின் விரிவாக்கம் என்ன?",
+        oE: ["Millions of Instructions Per Second", "Mega Information Processing Speed", "Multiple Integrated Program Steps", "Microprocessor Internal Processing System"],
+        oT: ["வினாடிக்கு மில்லியன் கட்டளைகள்", "மெகா தகவல் செயலாக்க வேகம்", "பல ஒருங்கிணைந்த நிரல் படிகள்", "நுண்செயலி உள் செயலாக்க அமைப்பு"],
+        a: 0,
+        exp: "Computer speed is typically measured in MIPS (Millions of Instructions Per Second) or FLOPS (Floating-point Operations Per Second)."
+    },
+    // 42 (a: 1)
+    {
+        qE: "In which year was the Intel 80386 microprocessor launched?",
+        qT: "இன்டெல் 80386 நுண்செயலி எந்த ஆண்டு அறிமுகப்படுத்தப்பட்டது?",
+        oE: ["1971", "1985", "1960", "1945"],
+        oT: ["1971", "1985", "1960", "1945"],
+        a: 1,
+        exp: "While the Intel 4004 was released in 1971, the Intel 80386 was launched in 1985."
+    },
+    // 43 (a: 2)
+    {
+        qE: "Which early electronic computer used binary representation rather than decimal representation along with stored programs?",
+        qT: "தசம பிரதிநிதித்துவத்திற்குப் பதிலாக இரும பிரதிநிதித்துவத்தையும் சேமிக்கப்பட்ட நிரல்களையும் பயன்படுத்திய ஆரம்பகால மின்னணுக் கணினி எது?",
+        oE: ["Harvard Mark I", "Analytical Engine", "EDVAC", "Pascaline"],
+        oT: ["ஹார்வர்ட் மார்க் I", "பகுப்பாய்வு இயந்திரம்", "எட்வாக்", "பாஸ்கலைன்"],
+        a: 2,
+        exp: "EDVAC (Electronic Discrete Variable Automatic Computer) was one of the earliest electronic computers to use binary representation and stored programs."
+    },
+    // 44 (a: 3)
+    {
+        qE: "Which statement is true regarding a Local Area Network (LAN) setup?",
+        qT: "உள்ளூர் பகுதி வலையமைப்பு அமைப்பைப் பொறுத்தவரை பின்வரும் எந்தக் கூற்று சரியானது?",
+        oE: ["LAN cannot share printers or files between devices", "LAN is used to connect computers across continents", "LAN requires satellite communication", "LAN connects computers within a limited area like a home or office"],
+        oT: ["LAN சாதனங்களுக்கு இடையே அச்சுப்பொறிகள் அல்லது கோப்புகளைப் பகிர முடியாது", "LAN கண்டங்களுக்கு இடையே கணினிகளை இணைக்கப் பயன்படுகிறது", "LAN-க்கு செயற்கைக்கோள் தொடர்பு தேவைப்படுகிறது", "LAN வீடு அல்லது அலுவலகம் போன்ற வரையறுக்கப்பட்ட பகுதிக்குள் கணினிகளை இணைக்கிறது"],
+        a: 3,
+        exp: "A LAN connects computers within a limited area using Ethernet or Wi-Fi and efficiently shares resources like printers and files."
+    },
+    // 45 (a: 0)
+    {
+        qE: "Which Indian organisation developed the 'VEGA' series of indigenous microprocessors?",
+        qT: "உள்நாட்டு 'வேகா' வரிசை நுண்செயலிகளை உருவாக்கிய இந்திய நிறுவனம் எது?",
+        oE: ["C-DAC", "IIT Madras", "ISRO", "BEL"],
+        oT: ["சி-டாக்", "ஐஐடி மெட்ராஸ்", "இஸ்ரோ", "பிஇஎல்"],
+        a: 0,
+        exp: "The VEGA series of indigenous processors was developed by C-DAC, whereas SHAKTI was developed by IIT Madras."
     },
 
     // ================= 5 STATEMENT-BASED QUESTIONS (Q46 - Q50) =================
-    // 46 (Schemes - Ans: 2 - Both 1 and 2)
+    // 46 (a: 0 - Only 1)
     {
-        qE: "Consider the following statements:\n1. The 'BHAVYA' (Bharat Audyogik Vikas Yojana) aims to develop 100 plug-and-play Industrial Parks across India.\n2. The 'BHAVYA-Rasayan Scheme' proposes the establishment of 3 dedicated Chemical Parks.",
-        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. 'பவ்யா' (பாரத் உத்யோகிக் விகாஸ் யோஜனா) இந்தியா முழுவதும் 100 உடனடிப் பயன்பாட்டுத் தொழில் பூங்காக்களை உருவாக்குவதை நோக்கமாகக் கொண்டுள்ளது.\n2. 'பவ்யா-ரசாயன் திட்டம்' 3 பிரத்யேக இரசாயனப் பூங்காக்களை அமைக்க முன்மொழிகிறது.",
-        oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
-        oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
-        a: 2,
-        exp: "Both statements are correct. BHAVYA (₹33,660 Cr) develops 100 industrial parks under DPIIT/NICDC, while BHAVYA-Rasayan (₹3,030 Cr) sets up 3 chemical parks under the Ministry of Chemicals & Fertilizers."
-    },
-    // 47 (Schemes - Ans: 3 - Neither 1 nor 2)
-    {
-        qE: "Consider the following statements:\n1. The 'Prime Minister's Research Chairs (PMRC)' scheme was launched by the Ministry of Science and Technology.\n2. The 'Samarth 2.0' scheme is primarily related to semiconductor manufacturing.",
-        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. 'பிரதம மந்திரி ஆராய்ச்சி இருக்கைகள்' திட்டம் அறிவியல் மற்றும் தொழில்நுட்ப அமைச்சகத்தால் தொடங்கப்பட்டது.\n2. 'சமர்த் 2.0' திட்டம் முதன்மையாக செமிகண்டக்டர் உற்பத்தியுடன் தொடர்புடையது.",
-        oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
-        oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
-        a: 3,
-        exp: "Both statements are incorrect. PMRC was launched by the Ministry of Education, and Samarth 2.0 is related to textile skilling under the Ministry of Textiles."
-    },
-    // 48 (Sources - Ans: 0 - Only 1)
-    {
-        qE: "Consider the following statements:\n1. The nomination of members to the Rajya Sabha was borrowed from Ireland.\n2. The election of members of the Rajya Sabha was borrowed from the United Kingdom.",
-        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. மாநிலங்களவைக்கு உறுப்பினர்களை நியமிக்கும் முறை அயர்லாந்திலிருந்து பெறப்பட்டது.\n2. மாநிலங்களவை உறுப்பினர்களின் தேர்தல் முறை இங்கிலாந்திலிருந்து பெறப்பட்டது.",
+        qE: "Consider the following statements:\n1. The first generation of computers used vacuum tubes, which were bulky and heat-generating.\n2. The transistor in the second generation made computers larger, slower, and more expensive.",
+        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. முதல் தலைமுறைக் கணினிகள் பெரியதாகவும் வெப்பத்தை உருவாக்குவதாகவும் இருந்த வெற்றிடக் குழாய்களைப் பயன்படுத்தின.\n2. இரண்டாம் தலைமுறையில் பயன்படுத்தப்பட்ட டிரான்சிஸ்டர் கணினிகளைப் பெரியதாகவும், மெதுவானதாகவும், அதிக விலையுள்ளதாகவும் மாற்றியது.",
         oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
         oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
         a: 0,
-        exp: "Statement 1 is correct. Statement 2 is incorrect because the election of members of the Rajya Sabha was borrowed from South Africa."
+        exp: "Statement 1 is correct. Statement 2 is incorrect because transistors made second-generation computers smaller, faster, cheaper, and more reliable."
     },
-    // 49 (Amendments - Ans: 1 - Only 2)
+    // 47 (a: 1 - Only 2)
     {
-        qE: "Consider the following statements:\n1. The 42nd Amendment Act replaced the term 'internal disturbance' with 'armed rebellion' for national emergency.\n2. The 44th Amendment Act provided that Fundamental Rights guaranteed by Articles 20 and 21 cannot be suspended during a national emergency.",
-        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. 42வது திருத்தச் சட்டம் தேசிய அவசரநிலைக்கான 'உள்நாட்டுக் கலவரம்' என்ற சொல்லை 'ஆயுதக் கிளர்ச்சி' என மாற்றியது.\n2. 44வது திருத்தச் சட்டம் தேசிய அவசரநிலையின் போது பிரிவுகள் 20 மற்றும் 21 வழங்கும் அடிப்படை உரிமைகளை நிறுத்தி வைக்க முடியாது என உறுதி செய்தது.",
+        qE: "Consider the following statements:\n1. Accuracy guarantees zero errors in computer output even when the input is flawed.\n2. 'No IQ' means a computer cannot perform tasks without explicit instructions from a user or programmer.",
+        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. உள்ளீடு தவறாக இருந்தாலும் கணினி வெளியீட்டில் பிழைகள் இல்லை என்பதைத் துல்லியம் உறுதி செய்கிறது.\n2. 'No IQ' என்பது பயனர் அல்லது நிரலாளரின் தெளிவான கட்டளைகள் இன்றி கணினியால் பணிகளைச் செய்ய முடியாது என்பதைக் குறிக்கிறது.",
         oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
         oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
         a: 1,
-        exp: "Statement 1 is incorrect because replacing 'internal disturbance' with 'armed rebellion' was done by the 44th Amendment Act, 1978, not the 42nd. Statement 2 is correct."
+        exp: "Statement 1 is incorrect due to the GIGO principle (flawed input produces flawed output). Statement 2 is correct."
     },
-    // 50 (Amendments - Ans: 0 - Only 1)
+    // 48 (a: 2 - Both 1 and 2)
     {
-        qE: "Consider the following statements:\n1. The 42nd Amendment Act transferred five subjects including Education and Forests from the State List to the Concurrent List.\n2. The 99th Amendment Act, 2014 established the Goods and Services Tax (GST).",
-        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. 42வது திருத்தச் சட்டம் கல்வி மற்றும் வனங்கள் உள்ளிட்ட ஐந்து துறைகளை மாநிலப் பட்டியலிலிருந்து பொதுப் பட்டியலுக்கு மாற்றியது.\n2. 2014-ஆம் ஆண்டின் 99வது திருத்தச் சட்டம் சரக்கு மற்றும் சேவை வரியை (GST) அறிமுகப்படுத்தியது.",
+        qE: "Consider the following statements:\n1. IEEE 802.11 is the standard used for wireless Wi-Fi networks.\n2. ENIAC was a first-generation general-purpose fully electronic digital computer built in 1945.",
+        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. IEEE 802.11 என்பது கம்பியில்லா வைஃபை வலையமைப்புகளுக்குப் பயன்படுத்தப்படும் தரநிலையாகும்.\n2. எனியாக் என்பது 1945-இல் உருவாக்கப்பட்ட முதல் தலைமுறை பொது-நோக்க முழு மின்னணு டிஜிட்டல் கணினியாகும்.",
         oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
         oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
-        a: 0,
-        exp: "Statement 1 is correct. Statement 2 is incorrect because the 99th Amendment Act formed the NJAC (later struck down by the SC in 2015), while the 101st Amendment Act, 2016 implemented GST."
+        a: 2,
+        exp: "Both statements are correct."
+    },
+    // 49 (a: 3 - Neither 1 nor 2)
+    {
+        qE: "Consider the following statements:\n1. CD stands for Central Disc and permanently stores the computer's operating system.\n2. A Wide Area Network (WAN) is smaller in geographical coverage than a Metropolitan Area Network (MAN).",
+        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. CD என்பது சென்ட்ரல் டிஸ்க் என்பதைக் குறிக்கிறது மற்றும் கணினியின் இயக்க முறைமையை நிரந்தரமாகச் சேமிக்கிறது.\n2. பரந்த பகுதி வலையமைப்பு (WAN) புவியியல் பரப்பளவில் மெட்ரோபாலிட்டன் பகுதி வலையமைப்பை (MAN) விடச் சிறியது.",
+        oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+        oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
+        a: 3,
+        exp: "Both statements are incorrect. CD stands for Compact Disc (not Central Disc), and a WAN covers larger distances (countries/continents) than a MAN (a city)."
+    },
+    // 50 (a: 1 - Only 2)
+    {
+        qE: "Consider the following statements:\n1. A Graphics Processing Unit (GPU) acts as the main brain of the computer to execute all operating system instructions.\n2. A MAC address operates at the Data Link Layer (Layer 2) of the OSI model.",
+        qT: "பின்வரும் கூற்றுகளைக் கவனியுங்கள்:\n1. அனைத்து இயக்க முறைமை கட்டளைகளையும் செயல்படுத்தும் கணினியின் முதன்மை மூளையாக கிராபிக்ஸ் செயலாக்க அலகு செயல்படுகிறது.\n2. MAC முகவரி OSI மாதிரியின் தரவு இணைப்பு அடுக்கில் (அடுக்கு 2) செயல்படுகிறது.",
+        oE: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+        oT: ["1 மட்டும்", "2 மட்டும்", "1 மற்றும் 2 இரண்டும்", "1 மற்றும் 2 இரண்டும் இல்லை"],
+        a: 1,
+        exp: "Statement 1 is incorrect because the CPU acts as the brain of the computer, while the GPU is specialized for rendering images and video. Statement 2 is correct."
     }
 ];
 let quizData = [];
